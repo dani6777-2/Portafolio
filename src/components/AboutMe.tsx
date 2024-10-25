@@ -13,7 +13,6 @@ import {
   faPeopleArrows,
   faHandshake,
   faMicrophone,
-  faGlobe,
   faDownload
 } from '@fortawesome/free-solid-svg-icons';
 import CV from '../assets/img/Daniel_Morales_Arias.jpg';
