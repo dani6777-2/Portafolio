@@ -22,6 +22,7 @@ const Header: React.FC = () => {
             <li><a href="#sobremi" className="hover:text-blue-500 transition-colors duration-300">SOBRE MÍ</a></li>
             <li><a href="#skills" className="hover:text-blue-500 transition-colors duration-300">SKILLS</a></li>
             <li><a href="#curriculum" className="hover:text-blue-500 transition-colors duration-300">TRAYECTORIA</a></li>
+            <li><a href="#services" className="hover:text-blue-500 transition-colors duration-300">SERVICIOS</a></li> {/* Enlace actualizado */}
             <li><a href="#portafolio" className="hover:text-blue-500 transition-colors duration-300">PORTAFOLIO</a></li>
           </ul>
         </nav>
@@ -39,6 +40,7 @@ const Header: React.FC = () => {
               <li><a href="#sobremi" className="hover:text-blue-500" onClick={toggleMenu}>SOBRE MÍ</a></li>
               <li><a href="#skills" className="hover:text-blue-500" onClick={toggleMenu}>SKILLS</a></li>
               <li><a href="#curriculum" className="hover:text-blue-500" onClick={toggleMenu}>TRAYECTORIA</a></li>
+              <li><a href="#services" className="hover:text-blue-500" onClick={toggleMenu}>SERVICIOS</a></li> {/* Enlace actualizado */}
               <li><a href="#portafolio" className="hover:text-blue-500" onClick={toggleMenu}>PORTAFOLIO</a></li>
             </ul>
           </nav>
