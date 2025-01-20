@@ -9,6 +9,57 @@ import {
 } from '@fortawesome/free-solid-svg-icons';
 
 const Curriculum: React.FC = () => {
+  const jobs = [
+    {
+      title: "Desarrollador de Software",
+      company: "STARKEN (Freelance)",
+      date: "Diciembre 2024",
+      responsibilities: [
+        "Diseñé y desarrollé APIs y microservicios resilientes utilizando Java, Quarkus y Spring Boot para facilitar la integración fluida con aplicaciones cliente durante todo el ciclo de vida del software.",
+        "Colaboré con miembros del equipo para planificar, definir el alcance, diseñar, desarrollar y probar soluciones de software, siguiendo metodologías ágiles.",
+        "Elaboré documentación integral, incluyendo diagramas y pseudocódigo, para asegurar una comprensión clara del software implementado entre los stakeholders.",
+        "Implementé integraciones asíncronas aprovechando eventos, webhooks y una arquitectura desacoplada e independiente para maximizar las capacidades de negocio.",
+        "Utilicé Jira Software para gestionar y organizar el flujo de trabajo de un equipo ágil, lo que resultó en una reducción del 25% en el tiempo de entrega.",
+        "Configuré y administré tableros Scrum y Kanban en Jira, lo que resultó en una mejora del 30% en la eficiencia del equipo.",
+        "Implementé SonarQube para automatizar el análisis de calidad del código, mejorando la detección temprana de vulnerabilidades y asegurando el cumplimiento de estándares.",
+        "Desplegué los microservicios en Google Cloud Platform (GCP), aprovechando servicios como Google Kubernetes Engine (GKE) y Google Cloud Storage.",
+        "Utilicé la API de Google Maps para integrar funciones de geolocalización y optimización de rutas, proporcionando una experiencia más eficiente a los usuarios."
+      ]
+    },
+    {
+      title: "Analista Desarrollador",
+      company: "VR Group Consulting",
+      date: "Febrero 2024 | Enero 2025",
+      responsibilities: [
+        "Desarrollé y mantuve microservicios utilizando Quarkus y Panache, optimizando la eficiencia del sistema y aprovechando las características avanzadas de Java.",
+        "Diseñé e implementé servicios de API REST con Spring Boot e Hibernate, lo que resultó en una integración fluida con otros sistemas.",
+        "Implementación de pruebas unitarias con cobertura del 86%.",
+        "Migración del proyecto a Quarkus 3.10.1.",
+        "Integré AWS S3 para desarrollar una plataforma de gestión de archivos robusta y escalable, lo que resultó en una mejora del 40% en la eficiencia de carga y gestión de archivos, automatizando el flujo de trabajo con AWS Lambda."
+      ]
+    },
+    {
+      title: "Analista de Sistemas",
+      company: "Zurich Santander",
+      date: "Julio 2023 | Diciembre 2023",
+      responsibilities: [
+        "Desarrollé aplicaciones backend utilizando Spring Boot, creando microservicios que interactúan con diversas bases de datos y servicios externos, lo que resultó en una mejora del 30% en la eficiencia de las consultas a bases de datos.",
+        "Diseñé e implementé una arquitectura de microservicios utilizando Spring Cloud para gestionar la configuración, el descubrimiento de servicios y la comunicación entre microservicios, lo que resultó en una mayor escalabilidad y resiliencia del sistema.",
+        "Liderazgo en la implementación de repositorios en GitLab y gestión de proyectos utilizando Maven."
+      ]
+    },
+    {
+      title: "Desarrollador de Software",
+      company: "Colibris LTDA",
+      date: "Marzo 2023 | Julio 2023",
+      responsibilities: [
+        "Diseñé y desarrollé una API REST utilizando Node.js y Express.js para gestionar las operaciones del sistema de ventas e inventarios, mejorando la eficiencia de la comunicación entre el frontend y el backend.",
+        "Implementé una arquitectura modular en el backend que permitió una integración fluida con la base de datos MySQL mediante el uso de Sequelize como ORM.",
+        "Aseguré el cumplimiento de estándares de calidad implementando pruebas automatizadas con Jest y logrando un 90% de cobertura de código."
+      ]
+    }
+  ];
+
   return (
     <section id="curriculum" className="min-h-screen py-20 bg-gradient-to-br from-gray-50 to-gray-100 dark:from-gray-900 dark:to-gray-800 text-black dark:text-white relative overflow-hidden">
       {/* Elementos decorativos de fondo */}
@@ -94,40 +145,7 @@ const Curriculum: React.FC = () => {
               Experiencia Laboral
             </h3>
 
-            {[
-              {
-                title: "Analista Desarrollador",
-                company: "VR Group Consulting",
-                date: "Febrero 2024 | Enero 2025",
-                responsibilities: [
-                  "Desarrollé y mantuve microservicios utilizando Quarkus y Panache, optimizando la eficiencia del sistema y aprovechando las características avanzadas de Java.",
-                  "Diseñé e implementé servicios de API REST con Spring Boot e Hibernate, lo que resultó en una integración fluida con otros sistemas.",
-                  "Implementación de pruebas unitarias con cobertura del 86%.",
-                  "Migración del proyecto a Quarkus 3.10.1.",
-                  "Integré AWS S3 para desarrollar una plataforma de gestión de archivos robusta y escalable, lo que resultó en una mejora del 40% en la eficiencia de carga y gestión de archivos, automatizando el flujo de trabajo con AWS Lambda."
-                ]
-              },
-              {
-                title: "Analista de Sistemas",
-                company: "Zurich Santander",
-                date: "Julio 2023 | Diciembre 2023",
-                responsibilities: [
-                  "Desarrollé aplicaciones backend utilizando Spring Boot, creando microservicios que interactúan con diversas bases de datos y servicios externos, lo que resultó en una mejora del 30% en la eficiencia de las consultas a bases de datos.",
-                  "Diseñé e implementé una arquitectura de microservicios utilizando Spring Cloud para gestionar la configuración, el descubrimiento de servicios y la comunicación entre microservicios, lo que resultó en una mayor escalabilidad y resiliencia del sistema.",
-                  "Liderazgo en la implementación de repositorios en GitLab y gestión de proyectos utilizando Maven."
-                ]
-              },
-              {
-                title: "Desarrollador de Software",
-                company: "Colibris LTDA",
-                date: "Marzo 2023 | Julio 2023",
-                responsibilities: [
-                  "Diseñé y desarrollé una API REST utilizando Node.js y Express.js para gestionar las operaciones del sistema de ventas e inventarios, mejorando la eficiencia de la comunicación entre el frontend y el backend.",
-                  "Implementé una arquitectura modular en el backend que permitió una integración fluida con la base de datos MySQL mediante el uso de Sequelize como ORM.",
-                  "Aseguré el cumplimiento de estándares de calidad implementando pruebas automatizadas con Jest y logrando un 90% de cobertura de código."
-                ]
-              }
-            ].map((job, index) => (
+            {jobs.map((job, index) => (
               <div key={index} className="group mb-8 transform hover:scale-[1.02] transition-all duration-300">
                 <div className="bg-gray-50/70 dark:bg-gray-700/70 rounded-xl p-6 shadow-lg hover:shadow-xl transition-all duration-300">
                   <div className="flex items-start space-x-4">

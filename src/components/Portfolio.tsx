@@ -15,6 +15,7 @@ import p5 from '../assets/img/p5.png';
 import p8 from '../assets/img/p8.png';
 import p9 from '../assets/img/p9.png';
 import p11 from '../assets/img/p11.png';
+import p12 from '../assets/img/p12.webp';
 
 const Portfolio: React.FC = () => {
   const projects = [
@@ -52,6 +53,25 @@ const Portfolio: React.FC = () => {
       description: "Desarrollo Freelance",
       liveLink: "https://feature-tailwindcss.d2wi0i3rip1a1j.amplifyapp.com", // Reemplaza por el dominio correcto si es necesario
     },
+    {
+      img: p12,
+      title: "Squid Tracker",
+      description: "Sistema de optimización para la asignación automática de zonas de paquetes utilizando algoritmos inteligentes y microservicios.",
+      isComingSoon: true,
+      technologies: [
+        "React", 
+        "Java", 
+        "Quarkus", 
+        "GCP",
+        "Microservicios",
+        "API REST"
+      ],
+      features: [
+        "Optimización de rutas",
+        "Asignación automática",
+        "Análisis en tiempo real"
+      ]
+    }
   ];
 
   return (
@@ -79,16 +99,37 @@ const Portfolio: React.FC = () => {
           {projects.map((project, index) => (
             <div 
               key={index} 
-              className="group relative bg-white dark:bg-gray-800 rounded-xl overflow-hidden shadow-lg hover:shadow-2xl transform hover:-translate-y-2 transition-all duration-300"
+              className={`group relative bg-white dark:bg-gray-800 rounded-xl overflow-hidden shadow-lg hover:shadow-2xl transform hover:-translate-y-2 transition-all duration-300 ${
+                project.isComingSoon ? 'cursor-not-allowed' : ''
+              }`}
             >
               {/* Imagen del proyecto */}
               <div className="relative overflow-hidden h-64">
                 <img
                   src={project.img}
                   alt={`Proyecto ${project.title}`}
-                  className="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-500"
+                  className={`w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-500 ${
+                    project.isComingSoon ? 'filter blur-[2px]' : ''
+                  }`}
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-gray-900 via-gray-900/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                {project.isComingSoon && (
+                  <div className="absolute inset-0 flex flex-col items-center justify-center bg-gray-900/60 backdrop-blur-sm">
+                    <div className="bg-blue-500/90 px-4 py-2 rounded-full text-white font-semibold animate-pulse mb-4">
+                      Próximamente
+                    </div>
+                    <div className="text-white text-sm text-center px-4">
+                      {project.features?.map((feature, idx) => (
+                        <span 
+                          key={idx}
+                          className="inline-block mx-1 mb-2"
+                        >
+                          {idx > 0 && "• "}
+                          {feature}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+                )}
               </div>
 
               {/* Contenido del proyecto */}
@@ -100,29 +141,42 @@ const Portfolio: React.FC = () => {
                   {project.description}
                 </p>
 
-                {/* Enlaces */}
-                <div className="flex items-center space-x-4">
-                  {project.githubLink && (
+                {/* Enlaces o tecnologías para proyecto próximo */}
+                {project.isComingSoon ? (
+                  <div className="flex flex-wrap gap-2">
+                    {project.technologies?.map((tech, idx) => (
+                      <span 
+                        key={idx}
+                        className="text-xs px-2 py-1 bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-400 rounded-full"
+                      >
+                        {tech}
+                      </span>
+                    ))}
+                  </div>
+                ) : (
+                  <div className="flex items-center space-x-4">
+                    {project.githubLink && (
+                      <a
+                        href={project.githubLink}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="flex items-center space-x-2 text-gray-600 dark:text-gray-400 hover:text-blue-500 dark:hover:text-blue-400 transition-colors"
+                      >
+                        <FontAwesomeIcon icon={faGithub} className="text-xl" />
+                        <span>Código</span>
+                      </a>
+                    )}
                     <a
-                      href={project.githubLink}
+                      href={project.liveLink}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="flex items-center space-x-2 text-gray-600 dark:text-gray-400 hover:text-blue-500 dark:hover:text-blue-400 transition-colors"
+                      className="flex items-center space-x-2 text-gray-600 dark:text-gray-400 hover:text-purple-500 dark:hover:text-purple-400 transition-colors"
                     >
-                      <FontAwesomeIcon icon={faGithub} className="text-xl" />
-                      <span>Código</span>
+                      <FontAwesomeIcon icon={faArrowUpRightFromSquare} className="text-lg" />
+                      <span>Demo</span>
                     </a>
-                  )}
-                  <a
-                    href={project.liveLink}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="flex items-center space-x-2 text-gray-600 dark:text-gray-400 hover:text-purple-500 dark:hover:text-purple-400 transition-colors"
-                  >
-                    <FontAwesomeIcon icon={faArrowUpRightFromSquare} className="text-lg" />
-                    <span>Demo</span>
-                  </a>
-                </div>
+                  </div>
+                )}
 
                 {/* Indicador de hover */}
                 <div className="absolute top-0 right-0 p-4 transform translate-x-full group-hover:translate-x-0 transition-transform duration-300">
