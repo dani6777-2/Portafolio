@@ -32,67 +32,25 @@ const Portfolio: React.FC = () => {
       liveLink: "https://dmoralestech.me", // Enlace corregido
     },
     {
-      img: p2,
-      title: "E-commerce",
-      description: "Desarrollo frontend HTML/CSS/JS",
-      githubLink: "https://github.com/usuario/ecommerce",
-      liveLink: "https://ecommerce.com", // Reemplaza por el dominio correcto si es necesario
-    },
-    {
-      img: p3,
-      title: "Amigo Secreto",
-      description: "Desarrollo JavaScript",
-      githubLink: "https://github.com/usuario/amigo-secreto",
-      liveLink: "https://amigo-secreto.com", // Reemplaza por el dominio correcto si es necesario
-    },
-    {
-      img: p4,
-      title: "Generador de contraseñas",
-      description: "Desarrollo con Python",
-      githubLink: "https://github.com/usuario/generador-contrasenas",
-      liveLink: "https://generador-contrasenas.com", // Reemplaza por el dominio correcto si es necesario
-    },
-    {
       img: p5,
       title: "Buscador de Emojis",
       description: "Desarrollo con ReactJs",
-      githubLink: "https://github.com/usuario/buscador-emojis",
-      liveLink: "https://buscador-emojis.com", // Reemplaza por el dominio correcto si es necesario
-    },
-    {
-      img: p6,
-      title: "E-commerce",
-      description: "Desarrollo HTML/CSS/JS",
-      githubLink: "https://github.com/usuario/ecommerce-frontend",
-      liveLink: "https://ecommerce-frontend.com", // Reemplaza por el dominio correcto si es necesario
-    },
-    {
-      img: p7,
-      title: "CRUD",
-      description: "Desarrollo con Java/Spring Boot",
-      githubLink: "https://github.com/usuario/crud-spring-boot",
-      liveLink: "https://crud-spring-boot.com", // Reemplaza por el dominio correcto si es necesario
+      githubLink: "https://github.com/dani6777-2/buscador-master",
+      liveLink: "https://buscador-master.onrender.com", // Reemplaza por el dominio correcto si es necesario
     },
     {
       img: p8,
       title: "Pronóstico del clima",
       description: "Desarrollo con React",
-      githubLink: "https://github.com/usuario/pronostico-clima",
-      liveLink: "https://pronostico-clima.com", // Reemplaza por el dominio correcto si es necesario
+      githubLink: "https://github.com/dani6777-2/openweather-master",
+      liveLink: "https://openweather-master.onrender.com/", // Reemplaza por el dominio correcto si es necesario
     },
     {
       img: p9,
       title: "Calculadora Básica",
       description: "Desarrollo con React",
-      githubLink: "https://github.com/usuario/calculadora-basica",
-      liveLink: "https://calculadora-basica.com", // Reemplaza por el dominio correcto si es necesario
-    },
-    {
-      img: p10,
-      title: "Lista de Tareas",
-      description: "Desarrollo con React/Django Rest",
-      githubLink: "https://github.com/usuario/lista-tareas",
-      liveLink: "https://lista-tareas.com", // Reemplaza por el dominio correcto si es necesario
+      githubLink: "https://github.com/dani6777-2/calculadora-react-master",
+      liveLink: "https://calculadora-react-master.onrender.com/", // Reemplaza por el dominio correcto si es necesario
     },
     {
       img: p11,
