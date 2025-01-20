@@ -15,7 +15,7 @@ import p5 from '../assets/img/p5.png';
 import p8 from '../assets/img/p8.png';
 import p9 from '../assets/img/p9.png';
 import p11 from '../assets/img/p11.png';
-import p12 from '../assets/img/p12.png';
+import p12 from '../assets/img/P12.png'
 
 const Portfolio: React.FC = () => {
   const projects = [
