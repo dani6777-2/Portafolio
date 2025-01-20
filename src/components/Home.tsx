@@ -12,7 +12,7 @@ import {
 // Importamos las imágenes
 import perfilImg from '../assets/img/perfil.jpeg';
 import fondoImg from '../assets/img/fondo.jpg';
-import CV from '../assets/img/Daniel_Morales_Arias.jpg';
+import CV from '../assets/img/MORALES_ARIAS_DANIEL_CV.pdf';
 
 const Home: React.FC = () => {
   const handleDownload = () => {

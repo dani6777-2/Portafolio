@@ -15,7 +15,7 @@ import {
   faMicrophone,
   faDownload
 } from '@fortawesome/free-solid-svg-icons';
-import CV from '../assets/img/Daniel_Morales_Arias.jpg';
+import CV from '../assets/img/MORALES_ARIAS_DANIEL_CV.pdf';
 import './AboutMe.css'; // Importa el archivo de estilos para la animación
 
 const AboutMe: React.FC = () => {
