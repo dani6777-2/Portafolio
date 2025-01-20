@@ -11,15 +11,9 @@ import {
 
 // Importamos las imágenes
 import p1 from '../assets/img/p1.png';
-import p2 from '../assets/img/p2.png';
-import p3 from '../assets/img/p3.png';
-import p4 from '../assets/img/p4.png';
 import p5 from '../assets/img/p5.png';
-import p6 from '../assets/img/p6.png';
-import p7 from '../assets/img/p7.png';
 import p8 from '../assets/img/p8.png';
 import p9 from '../assets/img/p9.png';
-import p10 from '../assets/img/p10.png';
 import p11 from '../assets/img/p11.png';
 
 const Portfolio: React.FC = () => {
