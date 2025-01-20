@@ -1,65 +1,99 @@
-<!doctype html>
-<html lang="en">
+<!DOCTYPE html>
+<html lang="es">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="Portafolio personal de Daniel Morales, desarrollador Full Stack especializado en React, Java, NodeJS, y más." />
-    <meta name="keywords" content="portafolio, Daniel Morales, desarrollador Full Stack, React, Java, NodeJS, JavaScript, Quarkus, Python, frontend, backend" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0" />
+    
+    <!-- SEO Básico -->
+    <title>Daniel Morales | Desarrollador Full Stack - React, Java, NodeJS</title>
+    <meta name="description" content="Desarrollador Full Stack especializado en crear soluciones web modernas y escalables con React, Java, NodeJS, y AWS. Experto en arquitecturas cloud y microservicios." />
+    <meta name="keywords" content="desarrollador full stack, react, java, nodejs, quarkus, aws, microservicios, desarrollo web, frontend, backend, cloud computing, chile" />
     <meta name="author" content="Daniel Morales" />
     <meta name="robots" content="index, follow" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 
-    <!-- Open Graph (OG) Meta Tags para Redes Sociales -->
-    <meta property="og:title" content="Portafolio de Daniel Morales - Full Stack Developer" />
-    <meta property="og:description" content="Portafolio personal de Daniel Morales, desarrollador Full Stack especializado en React, Java, NodeJS." />
-    <meta property="og:image" content="/assets/img/perfil.webp" />
-    <meta property="og:url" content="https://www.tuportafolio.com" />
+    <!-- Favicon y Apple Touch Icons -->
+    <link rel="icon" type="image/webp" href="/assets/img/favicon.webp" sizes="32x32" />
+    <link rel="apple-touch-icon" href="/assets/img/apple-touch-icon.png" />
+    <meta name="theme-color" content="#1F2937" />
+    <link rel="manifest" href="/manifest.json" />
+
+    <!-- Open Graph Meta Tags -->
     <meta property="og:type" content="website" />
-    <meta property="og:site_name" content="Portafolio de Daniel Morales" />
+    <meta property="og:url" content="https://dmoralestech.me" />
+    <meta property="og:title" content="Daniel Morales | Desarrollador Full Stack" />
+    <meta property="og:description" content="Especialista en desarrollo web moderno con React, Java y NodeJS. Creando soluciones digitales innovadoras y escalables." />
+    <meta property="og:image" content="https://dmoralestech.me/assets/img/og-image.webp" />
+    <meta property="og:site_name" content="Daniel Morales Portfolio" />
+    <meta property="og:locale" content="es_ES" />
 
-    <!-- Twitter Card Data -->
+    <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="Portafolio de Daniel Morales - Full Stack Developer" />
-    <meta name="twitter:description" content="Portafolio personal de Daniel Morales, especializado en React, Java, y NodeJS." />
-    <meta name="twitter:image" content="/assets/img/perfil.webp" />
-    <meta name="twitter:creator" content="@tuusuario" />
+    <meta name="twitter:site" content="@danielmorales" />
+    <meta name="twitter:creator" content="@danielmorales" />
+    <meta name="twitter:title" content="Daniel Morales | Desarrollador Full Stack" />
+    <meta name="twitter:description" content="Especialista en desarrollo web moderno con React, Java y NodeJS. Creando soluciones digitales innovadoras y escalables." />
+    <meta name="twitter:image" content="https://dmoralestech.me/assets/img/twitter-card.webp" />
 
-    <!-- Icono del sitio -->
-    <link rel="icon" type="image/webp" href="/assets/img/perfil.webp" />
-    
-    <!-- Canónica URL para evitar contenido duplicado -->
-    <link rel="canonical" href="https://www.tuportafolio.com" />
+    <!-- Precargar recursos críticos -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="preload" as="image" href="/assets/img/perfil.webp" />
 
-    <title>Portafolio | Daniel Morales - Full Stack Developer</title>
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://dmoralestech.me" />
 
-    <!-- Meta para prevenir cacheo -->
-    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
-    <meta http-equiv="Pragma" content="no-cache" />
-    <meta http-equiv="Expires" content="0" />
-
-    <!-- Schema.org JSON-LD para SEO estructurado -->
+    <!-- Schema.org JSON-LD -->
     <script type="application/ld+json">
       {
         "@context": "https://schema.org",
-        "@type": "WebSite",
-        "name": "Portafolio de Daniel Morales",
-        "url": "https://www.tuportafolio.com",
-        "description": "Portafolio personal de Daniel Morales, desarrollador Full Stack especializado en React, Java, NodeJS.",
-        "author": {
-          "@type": "Person",
-          "name": "Daniel Morales"
-        },
+        "@type": "Person",
+        "name": "Daniel Morales",
+        "jobTitle": "Desarrollador Full Stack",
+        "url": "https://dmoralestech.me",
+        "image": "https://dmoralestech.me/assets/img/perfil.webp",
+        "description": "Desarrollador Full Stack especializado en React, Java, y NodeJS con experiencia en arquitecturas cloud y microservicios.",
         "sameAs": [
           "https://www.linkedin.com/in/daniel-23dma/",
           "https://github.com/Dani6777"
-        ]
+        ],
+        "knowsAbout": [
+          "Desarrollo Web",
+          "React",
+          "Java",
+          "NodeJS",
+          "AWS",
+          "Microservicios",
+          "Cloud Computing"
+        ],
+        "worksFor": {
+          "@type": "Organization",
+          "name": "Freelance"
+        }
       }
     </script>
+
+    <!-- Seguridad -->
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' https: data:; script-src 'self' 'unsafe-inline' 'unsafe-eval'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com;" />
+    <meta http-equiv="X-Content-Type-Options" content="nosniff" />
+    <meta http-equiv="Permissions-Policy" content="interest-cohort=()" />
+
+    <!-- PWA -->
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="apple-mobile-web-app-title" content="Daniel Morales" />
   </head>
   <body>
+    <noscript>
+      <div style="padding: 20px; text-align: center;">
+        Para ver este portafolio necesitas habilitar JavaScript en tu navegador.
+      </div>
+    </noscript>
+    
     <div id="root"></div>
-
-    <!-- Incluimos el script con defer -->
     <script type="module" src="/src/main.tsx" defer></script>
+
+    <!-- Preload de imágenes críticas -->
+    <link rel="preload" as="image" href="/assets/img/fondo.jpg" />
   </body>
 </html>
