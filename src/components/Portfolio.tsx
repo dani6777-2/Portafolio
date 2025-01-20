@@ -22,8 +22,8 @@ const Portfolio: React.FC = () => {
       img: p1,
       title: "Portafolio Web",
       description: "Desarrollo frontend",
-      githubLink: "https://github.com/Dani6777/WebSite",
-      liveLink: "https://dmoralestech.me", // Enlace corregido
+      githubLink: "https://github.com/dani6777-2/Portafolio",
+      liveLink: "https://my-portafolio-app.onrender.com/", // Enlace corregido
     },
     {
       img: p5,

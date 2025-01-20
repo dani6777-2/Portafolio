@@ -93,7 +93,7 @@ const Home: React.FC = () => {
               </a>
               
               <a
-                href="https://github.com/Dani6777/"
+                href="https://github.com/dani6777-2"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="group relative p-3"
