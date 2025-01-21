@@ -5,8 +5,16 @@ import {
   faBriefcase,
   faBuilding,
   faCalendarAlt,
-  faChevronRight
+  faChevronRight,
+  faDownload
 } from '@fortawesome/free-solid-svg-icons';
+
+// Importar certificados
+import certificadoTalentoDigital from '../assets/img/certificado-sence.pdf';
+import certificadoForge from '../assets/img/certificado-forge.png';
+import certificadoCodingDojo from '../assets/img/certificado-java.pdf';
+import certificadoCiberseguridad from '../assets/img/certificado-cisco.pdf';
+import certificadoFrontend from '../assets/img/certificado-frontend.pdf';
 
 const Curriculum: React.FC = () => {
   const jobs = [
@@ -57,7 +65,63 @@ const Curriculum: React.FC = () => {
         "Implementé una arquitectura modular en el backend que permitió una integración fluida con la base de datos MySQL mediante el uso de Sequelize como ORM.",
         "Aseguré el cumplimiento de estándares de calidad implementando pruebas automatizadas con Jest y logrando un 90% de cobertura de código."
       ]
+    },
+    {
+      title: "Desarrollador de Software Junior",
+      company: "Marsueños Viajes y turismo",
+      date: "Octubre 2022 | Febrero 2023",
+      responsibilities: [
+        "Diseñé y desarrollé microservicios utilizando Java 11 y Spring Boot 2.6.x, asegurando que fueran escalables y de fácil mantenimiento.",
+        "Implementé controladores REST para manejar funcionalidades clave como la búsqueda de destinos, generación de itinerarios personalizados y confirmación de reservas.",
+        "Desarrollé una capa de servicios que interactuaba con la base de datos MySQL, optimizando consultas mediante JPA y Hibernate.",
+        "Aseguré la calidad del código escribiendo pruebas unitarias y de integración con Mockito y JUnit 5.",
+        "Configuré y desplegué aplicaciones en un entorno corporativo basado en Oracle WebLogic Server."
+      ]
     }
+  ];
+
+  const education = [
+    {
+      title: "Ingeniería en Informática",
+      institution: "Instituto Profesional INACAP",
+      date: "Actualmente",
+      description: "Actualmente estoy cursando la carrera de Ingeniería en Informática en INACAP. Destaco por mi capacidad para diseñar y construir soluciones seguras, cumpliendo con los estándares de calidad y los requisitos específicos del cliente. Mi formación integral y mi perfil versátil me permiten estar al día con las tendencias tecnológicas y adaptarme a las exigencias del mercado. Estoy desarrollando habilidades avanzadas en el análisis, diseño, construcción, pruebas e implementación de soluciones informáticas, lo que me permitirá integrarme exitosamente al dinámico campo de la programación y el análisis de sistemas una vez que haya egresado."
+    },
+    {
+      title: "Desarrollador Full Stack Java",
+      institution: "SENCE, TALENTO DIGITAL",
+      date: "Febrero 2024 | Julio 2024",
+      description: "Participé en un programa especializado en el que adquirí habilidades clave en el desarrollo de software utilizando Java bajo el paradigma de orientación a objetos. Este programa cubrió desde la creación y mantenimiento de software hasta el desarrollo full stack de aplicaciones web en Java, incluyendo la gestión de bases de datos. Me enfoqué en aplicar buenas prácticas de programación para ofrecer soluciones efectivas a problemáticas organizacionales, garantizando altos estándares de calidad en los proyectos. Este curso me preparó para integrarme en equipos de desarrollo y contribuir al éxito de proyectos tecnológicos.",
+      certificateUrl: certificadoTalentoDigital
+    },
+    {
+      title: "Desarrollo de habilidades blandas",
+      institution: "Fundación Forge",
+      date: "Octubre 2022 | Enero 2024",
+      description: "Participé en un curso intensivo de oratoria y comunicación efectiva, enfocado en desarrollar habilidades clave como la estructura del discurso, manejo de la voz y adaptación al público.",
+      certificateUrl: certificadoForge
+    },
+    {
+      title: "Desarrollo Frontend",
+      institution: "Coding Dojo",
+      date: "Octubre 2022 | Enero 2024",
+      description: "Completé un curso integral de desarrollo frontend...",
+      certificateUrl: certificadoFrontend
+    },
+    {
+      title: "Técnicas de desarrollo de aplicaciones Full Stack en Java",
+      institution: "Coding Dojo",
+      date: "Noviembre 2022 | Febrero 2023",
+      description: "Completé un curso integral de Desarrollo Full Stack en Java...",
+      certificateUrl: certificadoCodingDojo
+    },
+    {
+      title: "Fundamentos de la ciberseguridad",
+      institution: "Coding Dojo",
+      date: "Octubre 2022 | Enero 2024",
+      description: "Participé en un curso sobre fundamentos de ciberseguridad...",
+      certificateUrl: certificadoCiberseguridad
+    },
   ];
 
   return (
@@ -82,32 +146,7 @@ const Curriculum: React.FC = () => {
               Educación
             </h3>
 
-            {[
-              {
-                title: "Ingeniería en Informática",
-                institution: "Instituto Profesional INACAP",
-                date: "Actualmente",
-                description: "Actualmente estoy cursando la carrera de Ingeniería en Informática en INACAP. Destaco por mi capacidad para diseñar y construir soluciones seguras, cumpliendo con los estándares de calidad y los requisitos específicos del cliente. Mi formación integral y mi perfil versátil me permiten estar al día con las tendencias tecnológicas y adaptarme a las exigencias del mercado. Estoy desarrollando habilidades avanzadas en el análisis, diseño, construcción, pruebas e implementación de soluciones informáticas, lo que me permitirá integrarme exitosamente al dinámico campo de la programación y el análisis de sistemas una vez que haya egresado."
-              },
-              {
-                title: "Desarrollador Full Stack Java",
-                institution: "SENCE, TALENTO DIGITAL",
-                date: "Febrero 2024 | Julio 2024",
-                description: "Participé en un programa especializado en el que adquirí habilidades clave en el desarrollo de software utilizando Java bajo el paradigma de orientación a objetos. Este programa cubrió desde la creación y mantenimiento de software hasta el desarrollo full stack de aplicaciones web en Java, incluyendo la gestión de bases de datos. Me enfoqué en aplicar buenas prácticas de programación para ofrecer soluciones efectivas a problemáticas organizacionales, garantizando altos estándares de calidad en los proyectos. Este curso me preparó para integrarme en equipos de desarrollo y contribuir al éxito de proyectos tecnológicos."
-              },
-              {
-                title: "Desarrollo de habilidades blandas",
-                institution: "Fundación Forge",
-                date: "Octubre 2022 | Enero 2024",
-                description: "Participé en un curso intensivo de oratoria y comunicación efectiva, enfocado en desarrollar habilidades clave como la estructura del discurso, manejo de la voz y adaptación al público."
-              },
-              {
-                title: "Técnicas de desarrollo de aplicaciones Full Stack en Java",
-                institution: "Coding Dojo",
-                date: "Noviembre 2022 | Febrero 2023",
-                description: "Completé un curso integral de Desarrollo Full Stack en Java, destacando en tecnologías backend como Java Spring Boot para el desarrollo y consumo de APIs. En el frontend, desarrollé habilidades en HTML, CSS con enfoque en Responsive Design y JavaScript. También adquirí experiencia en el manejo y modelado de bases de datos relacionales, especialmente en MySQL. Este curso, impartido por Coding Dojo en colaboración con Accenture y Forge, enriqueció mi conjunto de habilidades en el desarrollo web integral."
-              }
-            ].map((item, index) => (
+            {education.map((item, index) => (
               <div key={index} className="group mb-8 transform hover:scale-[1.02] transition-all duration-300">
                 <div className="bg-gray-50/70 dark:bg-gray-700/70 rounded-xl p-6 shadow-lg hover:shadow-xl transition-all duration-300">
                   <div className="flex items-start space-x-4">
@@ -131,6 +170,17 @@ const Curriculum: React.FC = () => {
                       <p className="mt-3 text-gray-600 dark:text-gray-300 leading-relaxed">
                         {item.description}
                       </p>
+                      {item.certificateUrl && (
+                        <a
+                          href={item.certificateUrl}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="inline-flex items-center mt-4 text-blue-500 hover:text-blue-600 dark:text-blue-400 dark:hover:text-blue-300 transition-colors"
+                        >
+                          <FontAwesomeIcon icon={faDownload} className="mr-2" />
+                          Ver certificado
+                        </a>
+                      )}
                     </div>
                   </div>
                 </div>
