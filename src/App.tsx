@@ -14,6 +14,7 @@ import Portfolio from './components/Portfolio';
 import Footer from './components/Footer';
 import Loader from './components/Loader';
 import Services from './components/services';
+import FAQ from './components/FAQ';
 
 const App: React.FC = () => {
   const [darkMode, setDarkMode] = useState(() => {
@@ -110,6 +111,7 @@ const App: React.FC = () => {
         <Curriculum />
         <Services />
         <Portfolio />
+        <FAQ />
       </main>
 
       <Footer />

@@ -22,7 +22,7 @@ const Portfolio: React.FC = () => {
     {
       img: p1,
       title: "Portafolio Web",
-      description: "Desarrollo frontend",
+      description: "Desarrollo frontend con React y TailwindCSS",
       githubLink: "https://github.com/dani6777-2/Portafolio",
       liveLink: "https://my-portafolio-app.onrender.com/", // Enlace corregido
     },
@@ -50,12 +50,12 @@ const Portfolio: React.FC = () => {
     {
       img: p11,
       title: "WorkingSafe",
-      description: "Desarrollo Freelance",
-      liveLink: "https://feature-tailwindcss.d2wi0i3rip1a1j.amplifyapp.com", // Reemplaza por el dominio correcto si es necesario
+      description: "Desarrollo de sistema de gestión de seguridad",
+      liveLink: "https://feature-tailwindcss.d2wi0i3rip1a1j.amplifyapp.com",
     },
     {
       img: p12,
-      title: "Squid Tracker",
+      title: "Sectorice.com",
       description: "Sistema de optimización para la asignación automática de zonas de paquetes utilizando algoritmos inteligentes y microservicios.",
       isComingSoon: true,
       technologies: [
@@ -86,11 +86,11 @@ const Portfolio: React.FC = () => {
         {/* Encabezado */}
         <div className="text-center mb-16">
           <h2 className="text-5xl font-bold mb-6 text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-purple-600 dark:from-blue-400 dark:to-purple-400">
-            Proyectos
+            Proyectos Destacados
           </h2>
           <div className="flex items-center justify-center space-x-2 text-gray-600 dark:text-gray-400">
             <FontAwesomeIcon icon={faCode} className="text-blue-500" />
-            <p className="text-lg">Algunos de mis trabajos más recientes</p>
+            <p className="text-lg">Experiencia en desarrollo de soluciones empresariales</p>
           </div>
         </div>
 

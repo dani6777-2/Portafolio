@@ -66,7 +66,7 @@ const AboutMe: React.FC = () => {
               </li>
               <li className="flex items-center space-x-3 hover:text-blue-600 dark:hover:text-blue-400 transition-colors">
                 <span className="font-semibold">Cargo:</span>
-                <span>Analista Desarrollador</span>
+                <span>Desarrollador Full Stack</span>
               </li>
             </ul>
           </div>
@@ -114,7 +114,7 @@ const AboutMe: React.FC = () => {
             }`}
           >
             <span className="relative z-10 flex items-center">
-              Descargar CV 
+              Ver Currículum 
               <FontAwesomeIcon icon={faDownload} className="ml-2 group-hover:animate-bounce" />
             </span>
             <div className="absolute inset-0 bg-white rounded-full opacity-25 group-hover:opacity-35 transition-opacity"></div>

@@ -14,10 +14,10 @@ const Services: React.FC = () => {
   const services = [
     {
       icon: faCode,
-      title: "Desarrollo Full Stack Profesional",
+      title: "Desarrollo Full Stack",
       description:
-        "Servicios completos de desarrollo web que abarcan tanto frontend como backend, usando tecnologías avanzadas como React, Node.js, y Quarkus para crear aplicaciones escalables y de alto rendimiento.",
-      keywords: "desarrollo web full stack, aplicaciones escalables, React, Node.js, Quarkus",
+        "Experiencia en desarrollo web integral con tecnologías como React, Node.js, y Quarkus para crear aplicaciones empresariales escalables y de alto rendimiento.",
+      keywords: "desarrollo web full stack, aplicaciones empresariales, React, Node.js, Quarkus",
     },
     {
       icon: faGears,
@@ -67,12 +67,12 @@ const Services: React.FC = () => {
       <div className="relative z-10 container mx-auto px-6">
         <div className="text-center mb-16">
           <h2 className="text-5xl font-bold mb-6 text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-purple-600 dark:from-blue-400 dark:to-purple-400">
-            Servicios Profesionales
+            Competencias Técnicas
           </h2>
           <p className="text-xl text-gray-600 dark:text-gray-400 max-w-3xl mx-auto">
-            Soluciones a medida para optimizar y transformar tu presencia digital.
+            Experiencia y conocimientos en desarrollo de soluciones empresariales
             <span className="block mt-2 font-semibold text-blue-600 dark:text-blue-400">
-              Desarrollo de software, integración de sistemas y automatización de procesos.
+              Desarrollo de software, arquitectura de sistemas y mejores prácticas
             </span>
           </p>
         </div>
@@ -122,7 +122,7 @@ const Services: React.FC = () => {
           >
             <span className="relative z-10 flex items-center">
               <FontAwesomeIcon icon={faEnvelope} className="mr-2" />
-              Contáctame para tu proyecto
+              Contacto Profesional
             </span>
             <div className="absolute inset-0 bg-white opacity-0 group-hover:opacity-20 transition-opacity duration-300"></div>
           </a>

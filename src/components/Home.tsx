@@ -10,7 +10,7 @@ import {
 } from '@fortawesome/free-solid-svg-icons';
 
 // Importamos las imágenes
-import perfilImg from '../assets/img/perfil.jpeg';
+import perfilImg from '../assets/img/perfil.jpg';
 import fondoImg from '../assets/img/fondo.jpg';
 import CV from '../assets/img/MORALES_ARIAS_DANIEL_CV.pdf';
 

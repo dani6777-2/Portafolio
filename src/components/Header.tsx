@@ -8,7 +8,8 @@ import {
   faCode,
   faBriefcase,
   faGears,
-  faLaptopCode
+  faLaptopCode,
+  faQuestionCircle
 } from '@fortawesome/free-solid-svg-icons';
 
 const Header: React.FC = () => {
@@ -22,6 +23,7 @@ const Header: React.FC = () => {
     { href: '#curriculum', label: 'TRAYECTORIA', icon: faBriefcase },
     { href: '#services', label: 'SERVICIOS', icon: faGears },
     { href: '#portafolio', label: 'PORTAFOLIO', icon: faLaptopCode },
+    { href: '#faq', label: 'FAQ', icon: faQuestionCircle },
   ];
 
   useEffect(() => {
