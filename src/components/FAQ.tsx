@@ -76,7 +76,7 @@ const FAQ: React.FC = () => {
       category: ["Optimización", "Bases de Datos", "Rendimiento"],
       keywords: ["optimization", "caching", "Redis", "SQL"],
       difficulty: "advanced",
-      relevance: 92
+      relevance: 96
     },
     {
       question: "¿Cómo manejas el testing en tus proyectos?",
