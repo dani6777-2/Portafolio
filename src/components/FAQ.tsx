@@ -7,7 +7,7 @@ import {
   faUser,
   faRobot,
 } from '@fortawesome/free-solid-svg-icons';
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 
 interface Question {
   question: string;
@@ -347,29 +347,122 @@ const FAQ: React.FC = () => {
     setSelectedQuestion('');
   };
 
+  // Variants para las animaciones
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.1
+      }
+    }
+  };
+
+  const itemVariants = {
+    hidden: { y: 20, opacity: 0 },
+    visible: {
+      y: 0,
+      opacity: 1,
+      transition: {
+        type: "spring",
+        stiffness: 100,
+        damping: 10
+      }
+    }
+  };
+
+  const messageVariants = {
+    initial: { scale: 0.8, opacity: 0 },
+    animate: { 
+      scale: 1, 
+      opacity: 1,
+      transition: {
+        type: "spring",
+        stiffness: 200,
+        damping: 20
+      }
+    },
+    exit: { 
+      scale: 0.8, 
+      opacity: 0,
+      transition: {
+        duration: 0.2
+      }
+    }
+  };
+
   return (
     <section id="faq" className="relative min-h-screen py-20 bg-gradient-to-br from-gray-50 to-gray-100 dark:from-gray-900 dark:to-gray-800 overflow-hidden">
+      {/* Background animation */}
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 0.1 }}
+        transition={{ duration: 1.5 }}
+        className="absolute inset-0"
+      >
+        <motion.div
+          animate={{
+            scale: [1, 1.2, 1],
+            opacity: [0.1, 0.2, 0.1],
+          }}
+          transition={{
+            duration: 8,
+            repeat: Infinity,
+            repeatType: "reverse"
+          }}
+          className="absolute top-20 left-10 w-72 h-72 bg-blue-500 rounded-full mix-blend-multiply filter blur-3xl"
+        />
+        <motion.div
+          animate={{
+            scale: [1, 1.1, 1],
+            opacity: [0.1, 0.15, 0.1],
+          }}
+          transition={{
+            duration: 6,
+            repeat: Infinity,
+            repeatType: "reverse",
+            delay: 1
+          }}
+          className="absolute bottom-20 right-10 w-72 h-72 bg-purple-500 rounded-full mix-blend-multiply filter blur-3xl"
+        />
+      </motion.div>
+
       <div className="relative z-10 container mx-auto px-6">
         <motion.div
-          initial={{ y: 20, opacity: 0 }}
+          initial={{ y: -50, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
-          transition={{ duration: 0.5 }}
+          transition={{ duration: 0.8, type: "spring" }}
           className="text-center mb-16"
         >
           <h2 className="text-5xl font-bold mb-6 text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-purple-600 dark:from-blue-400 dark:to-purple-400">
             Simulador de Entrevista Interactivo
           </h2>
-          <div className="flex items-center justify-center space-x-2 text-gray-600 dark:text-gray-400">
+          <motion.div
+            initial={{ scale: 0.8, opacity: 0 }}
+            animate={{ scale: 1, opacity: 1 }}
+            transition={{ delay: 0.2, duration: 0.5 }}
+            className="flex items-center justify-center space-x-2 text-gray-600 dark:text-gray-400"
+          >
             <FontAwesomeIcon icon={faQuestionCircle} className="text-blue-500" />
             <p className="text-lg">Explora mis respuestas a preguntas técnicas y profesionales</p>
-          </div>
+          </motion.div>
         </motion.div>
 
-        <div className="max-w-4xl mx-auto">
+        <motion.div
+          variants={containerVariants}
+          initial="hidden"
+          animate="visible"
+          className="max-w-4xl mx-auto"
+        >
           {/* Tabs */}
-          <div className="flex justify-center mb-8">
+          <motion.div
+            variants={itemVariants}
+            className="flex justify-center mb-8"
+          >
             <div className="bg-white dark:bg-gray-800 rounded-lg p-1 shadow-lg">
-              <button
+              <motion.button
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
                 onClick={() => {
                   setActiveTab('technical');
                   resetChat();
@@ -382,8 +475,10 @@ const FAQ: React.FC = () => {
               >
                 <FontAwesomeIcon icon={faCode} className="mr-2" />
                 Técnicas
-              </button>
-              <button
+              </motion.button>
+              <motion.button
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
                 onClick={() => {
                   setActiveTab('psychological');
                   resetChat();
@@ -396,64 +491,99 @@ const FAQ: React.FC = () => {
               >
                 <FontAwesomeIcon icon={faBrain} className="mr-2" />
                 Psicológicas
-              </button>
+              </motion.button>
             </div>
-          </div>
+          </motion.div>
 
           {/* Chat Container */}
-          <div className="bg-white dark:bg-gray-800 rounded-xl shadow-xl overflow-hidden">
+          <motion.div
+            variants={itemVariants}
+            className="bg-white dark:bg-gray-800 rounded-xl shadow-xl overflow-hidden"
+          >
             {/* Chat Messages */}
             <div className="h-[400px] overflow-y-auto p-6 space-y-4">
-              {messages.map((message) => (
-                <div
-                  key={message.id}
-                  className={`flex items-start space-x-3 ${
-                    message.type === 'user' ? 'justify-end' : 'justify-start'
-                  }`}
-                >
-                  {message.type === 'bot' && (
-                    <div className="w-8 h-8 rounded-full bg-blue-500 flex items-center justify-center">
-                      <FontAwesomeIcon icon={faRobot} className="text-white" />
-                    </div>
-                  )}
-                  <div
-                    className={`max-w-[80%] rounded-xl p-4 ${
-                      message.type === 'user'
-                        ? 'bg-blue-500 text-white'
-                        : 'bg-gray-100 dark:bg-gray-700'
+              <AnimatePresence mode="popLayout">
+                {messages.map((message) => (
+                  <motion.div
+                    key={message.id}
+                    variants={messageVariants}
+                    initial="initial"
+                    animate="animate"
+                    exit="exit"
+                    layout
+                    className={`flex items-start space-x-3 ${
+                      message.type === 'user' ? 'justify-end' : 'justify-start'
                     }`}
                   >
-                    <p className={message.type === 'user' ? 'text-white' : 'text-gray-800 dark:text-gray-200'}>
-                      {message.content}
-                    </p>
-                    {message.type === 'bot' && message.keywords && (
-                      <div className="mt-2 flex flex-wrap gap-2">
-                        {message.keywords.map((keyword, idx) => (
-                          <span
-                            key={idx}
-                            className="text-xs px-2 py-1 bg-blue-100 dark:bg-blue-900 text-blue-600 dark:text-blue-300 rounded-full"
-                          >
-                            {keyword}
-                          </span>
-                        ))}
-                      </div>
+                    {message.type === 'bot' && (
+                      <motion.div
+                        initial={{ scale: 0 }}
+                        animate={{ scale: 1 }}
+                        transition={{ type: "spring", stiffness: 300, damping: 20 }}
+                        className="w-8 h-8 rounded-full bg-blue-500 flex items-center justify-center"
+                      >
+                        <FontAwesomeIcon icon={faRobot} className="text-white" />
+                      </motion.div>
                     )}
-                  </div>
-                  {message.type === 'user' && (
-                    <div className="w-8 h-8 rounded-full bg-blue-600 flex items-center justify-center">
-                      <FontAwesomeIcon icon={faUser} className="text-white" />
-                    </div>
-                  )}
-                </div>
-              ))}
+                    <motion.div
+                      initial={{ x: message.type === 'user' ? 20 : -20, opacity: 0 }}
+                      animate={{ x: 0, opacity: 1 }}
+                      transition={{ type: "spring", stiffness: 200, damping: 20 }}
+                      className={`max-w-[80%] rounded-xl p-4 ${
+                        message.type === 'user'
+                          ? 'bg-blue-500 text-white'
+                          : 'bg-gray-100 dark:bg-gray-700'
+                      }`}
+                    >
+                      <p className={message.type === 'user' ? 'text-white' : 'text-gray-800 dark:text-gray-200'}>
+                        {message.content}
+                      </p>
+                      {message.type === 'bot' && message.keywords && (
+                        <motion.div
+                          initial={{ opacity: 0, y: 10 }}
+                          animate={{ opacity: 1, y: 0 }}
+                          transition={{ delay: 0.2 }}
+                          className="mt-2 flex flex-wrap gap-2"
+                        >
+                          {message.keywords.map((keyword, idx) => (
+                            <motion.span
+                              key={idx}
+                              initial={{ scale: 0 }}
+                              animate={{ scale: 1 }}
+                              transition={{ delay: 0.2 + idx * 0.1 }}
+                              className="text-xs px-2 py-1 bg-blue-100 dark:bg-blue-900 text-blue-600 dark:text-blue-300 rounded-full"
+                            >
+                              {keyword}
+                            </motion.span>
+                          ))}
+                        </motion.div>
+                      )}
+                    </motion.div>
+                    {message.type === 'user' && (
+                      <motion.div
+                        initial={{ scale: 0 }}
+                        animate={{ scale: 1 }}
+                        transition={{ type: "spring", stiffness: 300, damping: 20 }}
+                        className="w-8 h-8 rounded-full bg-blue-600 flex items-center justify-center"
+                      >
+                        <FontAwesomeIcon icon={faUser} className="text-white" />
+                      </motion.div>
+                    )}
+                  </motion.div>
+                ))}
+              </AnimatePresence>
             </div>
 
             {/* Question Selector */}
-            <div className="border-t border-gray-200 dark:border-gray-700 p-4">
-              <select
+            <motion.div
+              variants={itemVariants}
+              className="border-t border-gray-200 dark:border-gray-700 p-4"
+            >
+              <motion.select
+                whileFocus={{ scale: 1.02 }}
                 value={selectedQuestion}
                 onChange={(e) => handleQuestionSelect(e.target.value)}
-                className="w-full px-4 py-2 bg-gray-100 dark:bg-gray-700 rounded-lg text-gray-800 dark:text-gray-200 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                className="w-full px-4 py-2 bg-gray-100 dark:bg-gray-700 rounded-lg text-gray-800 dark:text-gray-200 focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all duration-300"
               >
                 <option value="">Selecciona una pregunta...</option>
                 {currentQuestions.map((q, index) => (
@@ -461,10 +591,10 @@ const FAQ: React.FC = () => {
                     {q.question} {q.difficulty === 'advanced' ? '🔥' : ''}
                   </option>
                 ))}
-              </select>
-            </div>
-          </div>
-        </div>
+              </motion.select>
+            </motion.div>
+          </motion.div>
+        </motion.div>
       </div>
     </section>
   );
