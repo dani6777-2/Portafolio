@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
   faQuestionCircle,
@@ -29,6 +29,37 @@ const FAQ: React.FC = () => {
   const [activeTab, setActiveTab] = useState<'technical' | 'psychological'>('technical');
   const [messages, setMessages] = useState<Message[]>([]);
   const [selectedQuestion, setSelectedQuestion] = useState<string>('');
+  const [isTyping, setIsTyping] = useState(false);
+  const chatContainerRef = useRef<HTMLDivElement>(null);
+  const [currentText, setCurrentText] = useState('');
+  const [showFullText, setShowFullText] = useState(false);
+
+  useEffect(() => {
+    if (chatContainerRef.current) {
+      chatContainerRef.current.scrollTop = chatContainerRef.current.scrollHeight;
+    }
+  }, [messages]);
+
+  const typeText = async (text: string, onComplete: () => void) => {
+    setCurrentText('');
+    setShowFullText(false);
+    
+    let currentIndex = 0;
+    const typingSpeed = 30; // Ajusta la velocidad de escritura
+
+    const typeNextChar = () => {
+      if (currentIndex < text.length) {
+        setCurrentText(prev => prev + text[currentIndex]);
+        currentIndex++;
+        setTimeout(typeNextChar, typingSpeed);
+      } else {
+        setShowFullText(true);
+        onComplete();
+      }
+    };
+
+    typeNextChar();
+  };
 
   const technicalQuestions: Question[] = [
     {
@@ -318,17 +349,24 @@ const FAQ: React.FC = () => {
 
   const currentQuestions = activeTab === 'technical' ? technicalQuestions : psychologicalQuestions;
 
-  const handleQuestionSelect = (question: string) => {
+  const handleQuestionSelect = async (question: string) => {
     setSelectedQuestion(question);
     const selectedQ = currentQuestions.find(q => q.question === question);
     
     if (selectedQ) {
-      // Agregar mensaje del usuario
+      // Agregar mensaje del usuario inmediatamente
       const userMessage: Message = {
         id: Math.random().toString(36).substr(2, 9),
         type: 'user',
         content: question,
       };
+      setMessages(prev => [...prev, userMessage]);
+      
+      // Mostrar indicador de escritura
+      setIsTyping(true);
+      
+      // Simular delay de respuesta natural
+      await new Promise(resolve => setTimeout(resolve, 1000));
       
       // Agregar mensaje del bot
       const botMessage: Message = {
@@ -338,7 +376,8 @@ const FAQ: React.FC = () => {
         keywords: selectedQ.keywords,
       };
       
-      setMessages(prev => [...prev, userMessage, botMessage]);
+      setMessages(prev => [...prev, botMessage]);
+      setIsTyping(false);
     }
   };
 
@@ -501,7 +540,7 @@ const FAQ: React.FC = () => {
             className="bg-white dark:bg-gray-800 rounded-xl shadow-xl overflow-hidden"
           >
             {/* Chat Messages */}
-            <div className="h-[400px] overflow-y-auto p-6 space-y-4">
+            <div ref={chatContainerRef} className="h-[400px] overflow-y-auto p-6 space-y-4">
               <AnimatePresence mode="popLayout">
                 {messages.map((message) => (
                   <motion.div
@@ -572,6 +611,47 @@ const FAQ: React.FC = () => {
                   </motion.div>
                 ))}
               </AnimatePresence>
+              
+              {/* Typing Indicator */}
+              <AnimatePresence>
+                {isTyping && (
+                  <motion.div
+                    initial={{ opacity: 0, y: 10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: 10 }}
+                    className="flex items-center space-x-2"
+                  >
+                    <div className="w-8 h-8 rounded-full bg-blue-500 flex items-center justify-center">
+                      <FontAwesomeIcon icon={faRobot} className="text-white" />
+                    </div>
+                    <div className="bg-gray-100 dark:bg-gray-700 rounded-xl p-4">
+                      <div className="flex space-x-2">
+                        <motion.div
+                          animate={{
+                            scale: [1, 1.2, 1],
+                            transition: { repeat: Infinity, duration: 0.6 }
+                          }}
+                          className="w-2 h-2 bg-blue-500 rounded-full"
+                        />
+                        <motion.div
+                          animate={{
+                            scale: [1, 1.2, 1],
+                            transition: { repeat: Infinity, duration: 0.6, delay: 0.2 }
+                          }}
+                          className="w-2 h-2 bg-blue-500 rounded-full"
+                        />
+                        <motion.div
+                          animate={{
+                            scale: [1, 1.2, 1],
+                            transition: { repeat: Infinity, duration: 0.6, delay: 0.4 }
+                          }}
+                          className="w-2 h-2 bg-blue-500 rounded-full"
+                        />
+                      </div>
+                    </div>
+                  </motion.div>
+                )}
+              </AnimatePresence>
             </div>
 
             {/* Question Selector */}
@@ -584,6 +664,7 @@ const FAQ: React.FC = () => {
                 value={selectedQuestion}
                 onChange={(e) => handleQuestionSelect(e.target.value)}
                 className="w-full px-4 py-2 bg-gray-100 dark:bg-gray-700 rounded-lg text-gray-800 dark:text-gray-200 focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all duration-300"
+                disabled={isTyping}
               >
                 <option value="">Selecciona una pregunta...</option>
                 {currentQuestions.map((q, index) => (
