@@ -20,7 +20,7 @@ const Curriculum: React.FC = () => {
   const jobs = [
     {
       title: "Desarrollador de Software",
-      company: "STARKEN (Freelance)",
+      company: "STARKEN",
       date: "Diciembre 2024",
       responsibilities: [
         "Diseñé y desarrollé APIs y microservicios resilientes utilizando Java, Quarkus y Spring Boot para facilitar la integración fluida con aplicaciones cliente durante todo el ciclo de vida del software.",
@@ -81,6 +81,12 @@ const Curriculum: React.FC = () => {
   ];
 
   const education = [
+    {
+      title: "AWS re/Start - Administrador Jr Cloud",
+      institution: "Generation Chile",
+      date: "Febrero 2024 | Mayo 2024",
+      description: "Actualmente participando en un bootcamp intensivo de 14 semanas enfocado en Cloud Computing y AWS. El programa cubre fundamentos de informática en la nube, Linux, redes, ciberseguridad, bases de datos y servicios principales de Amazon Web Services. También incluye desarrollo de habilidades blandas como gestión del tiempo, comunicación y trabajo en equipo. El programa está diseñado para preparar profesionales capaces de implementar y gestionar soluciones en la nube, con un enfoque práctico y orientado a la industria.",
+    },
     {
       title: "Ingeniería en Informática",
       institution: "Instituto Profesional INACAP",
