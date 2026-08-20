@@ -6,22 +6,52 @@ export default {
   ],
   theme: {
     extend: {
-      animation: {
-        'fadeIn': 'fadeIn 0.3s ease-in-out',
-        'typing': 'typing 1.5s infinite'
+      colors: {
+        paper: '#EFEBE3',
+        'paper-soft': '#E6E1D6',
+        ink: '#111110',
+        'ink-soft': '#2A2A28',
+        muted: '#5C5750',
+        line: '#111110',
+        accent: '#FF3B00',
+        accentDark: '#C72C00',
+      },
+      fontFamily: {
+        sans: ['Inter', 'system-ui', '-apple-system', 'Segoe UI', 'Roboto', 'sans-serif'],
+        display: ['Syne', 'Inter', 'system-ui', 'sans-serif'],
+        mono: ['"JetBrains Mono"', 'ui-monospace', 'SFMono-Regular', 'Menlo', 'monospace'],
       },
       keyframes: {
-        fadeIn: {
-          '0%': { opacity: '0', transform: 'translateY(10px)' },
-          '100%': { opacity: '1', transform: 'translateY(0)' }
+        marquee: {
+          '0%': { transform: 'translateX(0)' },
+          '100%': { transform: 'translateX(-50%)' },
         },
-        typing: {
-          '0%': { width: '0%' },
-          '100%': { width: '100%' }
-        }
-      }
+        marqueeRev: {
+          '0%': { transform: 'translateX(-50%)' },
+          '100%': { transform: 'translateX(0)' },
+        },
+        pulseDot: {
+          '0%, 100%': { opacity: '1' },
+          '50%': { opacity: '0.35' },
+        },
+        blink: {
+          '0%, 100%': { opacity: '1' },
+          '50%': { opacity: '0' },
+        },
+        floaty: {
+          '0%, 100%': { transform: 'translateY(0)' },
+          '50%': { transform: 'translateY(8px)' },
+        },
+      },
+      animation: {
+        marquee: 'marquee 28s linear infinite',
+        'marquee-rev': 'marqueeRev 28s linear infinite',
+        'pulse-dot': 'pulseDot 2s ease-in-out infinite',
+        blink: 'blink 1.1s steps(2) infinite',
+        floaty: 'floaty 2.2s ease-in-out infinite',
+      },
     },
   },
-  darkMode: 'class', // Habilita el modo oscuro basado en la clase 'dark'
+  darkMode: 'class',
   plugins: [],
 }

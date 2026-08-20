@@ -1,121 +1,76 @@
-import React, { useState, useEffect } from 'react';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { 
-  faSun, 
-  faMoon,
-  faArrowUp 
-} from '@fortawesome/free-solid-svg-icons';
-import Header from './components/Header';
-import Home from './components/Home';
-import AboutMe from './components/AboutMe';
-import Skills from './components/Skills';
-import Curriculum from './components/Curriculum';
-import Portfolio from './components/Portfolio';
-import Footer from './components/Footer';
+import React, { useState } from 'react';
+import { AnimatePresence, motion, MotionConfig } from 'framer-motion';
+import Chrome from './components/Chrome';
 import Loader from './components/Loader';
-import Services from './components/services';
-import FAQ from './components/FAQ';
+import Hero from './components/Hero';
+import Manifesto from './components/Manifesto';
+import Experience from './components/Experience';
+import Projects from './components/Projects';
+import Skills from './components/Skills';
+import Certifications from './components/Certifications';
+import Faq from './components/Faq';
+import Contact from './components/Contact';
+import { useLang } from './i18n/translations';
+
+const Footer: React.FC = () => {
+  const { t } = useLang();
+  return (
+    <footer className="border-t border-line/20">
+      <div className="container-site py-8 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+        <p className="kicker">© {new Date().getFullYear()} Daniel Morales — {t('footer.rights')}</p>
+        <p className="font-mono text-[11px] text-muted hidden md:block">{t('footer.built')}</p>
+        <div className="flex items-center gap-6">
+          <span className="font-mono text-[11px] text-muted">{t('contact.location')}</span>
+          <span className="font-mono text-[11px] text-accent">v4.0 — go test ./... ✓</span>
+        </div>
+      </div>
+    </footer>
+  );
+};
 
 const App: React.FC = () => {
-  const [darkMode, setDarkMode] = useState(() => {
-    // Verificar preferencia guardada o preferencia del sistema
-    const savedTheme = localStorage.getItem('theme');
-    return savedTheme ? savedTheme === 'dark' : window.matchMedia('(prefers-color-scheme: dark)').matches;
-  });
-  const [loading, setLoading] = useState(true);
-  const [showScrollTop, setShowScrollTop] = useState(false);
-
-  // Efecto para el tema oscuro
-  useEffect(() => {
-    if (darkMode) {
-      document.documentElement.classList.add('dark');
-      localStorage.setItem('theme', 'dark');
-    } else {
-      document.documentElement.classList.remove('dark');
-      localStorage.setItem('theme', 'light');
+  const [loading, setLoading] = useState(() => {
+    try {
+      return !sessionStorage.getItem('v4-session');
+    } catch {
+      return true;
     }
-  }, [darkMode]);
+  });
 
-  // Efecto para el loader
-  useEffect(() => {
-    const timer = setTimeout(() => setLoading(false), 2000);
-    return () => clearTimeout(timer);
-  }, []);
-
-  // Efecto para el botón de scroll
-  useEffect(() => {
-    const handleScroll = () => {
-      setShowScrollTop(window.scrollY > 500);
-    };
-
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
-
-  const toggleDarkMode = () => {
-    setDarkMode(!darkMode);
+  const finishLoading = () => {
+    try {
+      sessionStorage.setItem('v4-session', '1');
+    } catch {
+      /* noop */
+    }
+    setLoading(false);
   };
-
-  const scrollToTop = () => {
-    window.scrollTo({
-      top: 0,
-      behavior: 'smooth'
-    });
-  };
-
-  if (loading) return <Loader />;
 
   return (
-    <div className="App bg-gray-100 dark:bg-gray-900 text-black dark:text-white min-h-screen relative">
-      <Header />
+    <MotionConfig reducedMotion="user">
+      <div className="bg-paper text-ink min-h-screen overflow-x-clip">
+        <AnimatePresence>{loading && <Loader onFinished={finishLoading} />}</AnimatePresence>
 
-      {/* Contenedor de botones flotantes */}
-      <div className="fixed bottom-4 right-4 z-50 flex flex-col gap-4 sm:gap-6">
-        {/* Botón de tema flotante */}
-        <button
-          onClick={toggleDarkMode}
-          className="w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-white dark:bg-gray-800 shadow-lg hover:shadow-xl transform hover:scale-110 transition-all duration-300 group flex items-center justify-center"
-          aria-label={darkMode ? 'Activar modo claro' : 'Activar modo oscuro'}
+        <motion.div
+          initial={{ opacity: 0, y: 24 }}
+          animate={{ opacity: loading ? 0 : 1, y: loading ? 24 : 0 }}
+          transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
         >
-          <FontAwesomeIcon 
-            icon={darkMode ? faSun : faMoon} 
-            className={`text-lg sm:text-xl ${
-              darkMode 
-                ? 'text-yellow-400 group-hover:text-yellow-300' 
-                : 'text-gray-600 group-hover:text-gray-800'
-            }`}
-          />
-        </button>
-
-        {/* Botón de scroll to top */}
-        <button
-          onClick={scrollToTop}
-          className={`w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-blue-500 dark:bg-blue-600 shadow-lg hover:shadow-xl transform hover:scale-110 transition-all duration-300 flex items-center justify-center ${
-            showScrollTop 
-              ? 'opacity-100 translate-y-0' 
-              : 'opacity-0 translate-y-10 pointer-events-none'
-          }`}
-          aria-label="Volver arriba"
-        >
-          <FontAwesomeIcon 
-            icon={faArrowUp} 
-            className="text-lg sm:text-xl text-white" 
-          />
-        </button>
+          <Chrome />
+          <main>
+            <Hero />
+            <Manifesto />
+            <Experience />
+            <Projects />
+            <Skills />
+            <Certifications />
+            <Faq />
+            <Contact />
+          </main>
+          <Footer />
+        </motion.div>
       </div>
-
-      <main className="relative">
-        <Home />
-        <AboutMe />
-        <Skills />
-        <Curriculum />
-        <Services />
-        <Portfolio />
-        <FAQ />
-      </main>
-
-      <Footer />
-    </div>
+    </MotionConfig>
   );
 };
 

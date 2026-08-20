@@ -1,141 +1,89 @@
 import React from 'react';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import {
-  faCode,
-  faDatabase,
-  faCloud,
-  faGears,
-  faBrain,
-  faUsers,
-  faLightbulb,
-  faRocket
-} from '@fortawesome/free-solid-svg-icons';
+import { motion } from 'framer-motion';
+import { useLang } from '../i18n/translations';
+
+interface SkillCat {
+  labelKey: string;
+  dataKey: string;
+  level: number;
+}
+
+const skills: SkillCat[] = [
+  { labelKey: 'skills.backend', dataKey: 'skills.data.backend', level: 92 },
+  { labelKey: 'skills.cloud', dataKey: 'skills.data.cloud', level: 88 },
+  { labelKey: 'skills.frontend', dataKey: 'skills.data.frontend', level: 85 },
+  { labelKey: 'skills.testing', dataKey: 'skills.data.testing', level: 86 },
+  { labelKey: 'skills.db', dataKey: 'skills.data.db', level: 80 },
+];
 
 const Skills: React.FC = () => {
-  const technicalSkills = [
-    {
-      icon: faCode,
-      category: "Desarrollo Backend",
-      skills: ["Java (Spring Boot, Quarkus)", "Python/Django", "JavaScript/NodeJS"]
-    },
-    {
-      icon: faGears,
-      category: "Arquitectura & Testing",
-      skills: ["Microservicios", "API REST", "JMeter", "JaCoCo", "Jest/JUnit"]
-    },
-    {
-      icon: faDatabase,
-      category: "Bases de Datos",
-      skills: ["MySQL", "Oracle 19C", "DynamoDB"]
-    },
-    {
-      icon: faCloud,
-      category: "Cloud & DevOps",
-      skills: ["AWS", "GCP", "GitLab CI", "GitHub Actions"]
-    }
-  ];
-
-  const professionalSkills = [
-    {
-      icon: faBrain,
-      category: "Habilidades Cognitivas",
-      skills: ["Resolución de problemas", "Pensamiento crítico", "Análisis y diseño"]
-    },
-    {
-      icon: faUsers,
-      category: "Trabajo en Equipo",
-      skills: ["Comunicación efectiva", "Liderazgo", "Gestión de conflictos"]
-    },
-    {
-      icon: faLightbulb,
-      category: "Metodologías",
-      skills: ["SCRUM", "Agile", "Gestión de proyectos"]
-    },
-    {
-      icon: faRocket,
-      category: "Desarrollo Personal",
-      skills: ["Aprendizaje continuo", "Autogestión", "Adaptabilidad"]
-    }
-  ];
+  const { t } = useLang();
+  const softTags = t('skills.soft.items').split('·').map((s) => s.trim());
 
   return (
-    <section id="skills" className="relative min-h-screen py-20 bg-gradient-to-br from-gray-50 to-gray-100 dark:from-gray-900 dark:to-gray-800 overflow-hidden">
-      {/* Elementos decorativos de fondo */}
-      <div className="absolute inset-0">
-        <div className="absolute top-20 left-10 w-72 h-72 bg-blue-500 rounded-full mix-blend-multiply filter blur-3xl opacity-10 animate-blob"></div>
-        <div className="absolute bottom-20 right-10 w-72 h-72 bg-purple-500 rounded-full mix-blend-multiply filter blur-3xl opacity-10 animate-blob animation-delay-2000"></div>
-      </div>
-
-      <div className="relative z-10 container mx-auto px-6">
-        <div className="text-center mb-16">
-          <h2 className="text-5xl font-bold mb-6 text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-purple-600 dark:from-blue-400 dark:to-purple-400">
-            Habilidades
-          </h2>
-          <p className="text-xl text-gray-600 dark:text-gray-400 max-w-3xl mx-auto">
-            Combinación de expertise técnico y habilidades profesionales para crear soluciones efectivas
+    <section id="skills" className="py-20 sm:py-28 bg-ink text-paper">
+      <div className="container-site">
+        <div className="flex items-baseline justify-between border-b border-paper/20 pb-5 mb-12">
+          <p className="kicker text-paper/60">
+            <span className="text-accent">04</span> — {t('skills.eyebrow')}
           </p>
+          <span className="hidden sm:block font-mono text-[11px] uppercase tracking-[0.22em] text-paper/40">dm©</span>
         </div>
 
-        <div className="space-y-16">
-          {/* Habilidades Técnicas */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-            {technicalSkills.map((category, index) => (
-              <div
-                key={index}
-                className="group bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm rounded-xl p-6 shadow-lg hover:shadow-2xl transform hover:-translate-y-2 transition-all duration-300"
-              >
-                <div className="flex items-center mb-4 space-x-3">
-                  <div className="bg-gradient-to-br from-blue-500 to-purple-600 p-3 rounded-lg">
-                    <FontAwesomeIcon icon={category.icon} className="text-xl text-white" />
-                  </div>
-                  <h3 className="text-lg font-bold text-gray-800 dark:text-white">
-                    {category.category}
-                  </h3>
-                </div>
-                <ul className="space-y-2">
-                  {category.skills.map((skill, idx) => (
-                    <li 
-                      key={idx}
-                      className="text-gray-600 dark:text-gray-300 flex items-center space-x-2"
-                    >
-                      <span className="w-1.5 h-1.5 bg-blue-500 rounded-full"></span>
-                      <span>{skill}</span>
-                    </li>
-                  ))}
-                </ul>
+        <div className="space-y-0">
+          {skills.map((skill, idx) => (
+            <motion.div
+              key={skill.labelKey}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: '-40px' }}
+              transition={{ duration: 0.5, delay: idx * 0.05 }}
+              className="grid gap-3 sm:grid-cols-[220px_1fr_auto] sm:items-center border-b border-paper/15 py-5"
+            >
+              <div className="flex items-baseline gap-3">
+                <span className="font-mono text-[11px] text-accent">{String(idx + 1).padStart(2, '0')}</span>
+                <h3 className="font-display font-bold text-lg sm:text-xl text-paper">
+                  {t(skill.labelKey)}
+                </h3>
               </div>
-            ))}
-          </div>
 
-          {/* Habilidades Profesionales */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-            {professionalSkills.map((category, index) => (
-              <div
-                key={index}
-                className="group bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm rounded-xl p-6 shadow-lg hover:shadow-2xl transform hover:-translate-y-2 transition-all duration-300"
-              >
-                <div className="flex items-center mb-4 space-x-3">
-                  <div className="bg-gradient-to-br from-purple-500 to-pink-600 p-3 rounded-lg">
-                    <FontAwesomeIcon icon={category.icon} className="text-xl text-white" />
-                  </div>
-                  <h3 className="text-lg font-bold text-gray-800 dark:text-white">
-                    {category.category}
-                  </h3>
-                </div>
-                <ul className="space-y-2">
-                  {category.skills.map((skill, idx) => (
-                    <li 
-                      key={idx}
-                      className="text-gray-600 dark:text-gray-300 flex items-center space-x-2"
-                    >
-                      <span className="w-1.5 h-1.5 bg-purple-500 rounded-full"></span>
-                      <span>{skill}</span>
-                    </li>
-                  ))}
-                </ul>
+              <div className="h-1.5 bg-paper/15 relative overflow-hidden">
+                <motion.span
+                  className="absolute inset-y-0 left-0 bg-accent"
+                  initial={{ width: 0 }}
+                  whileInView={{ width: `${skill.level}%` }}
+                  viewport={{ once: true, margin: '-40px' }}
+                  transition={{ duration: 1, ease: [0.22, 1, 0.36, 1], delay: 0.15 }}
+                />
               </div>
-            ))}
+
+              <div className="flex items-center gap-3 sm:justify-end">
+                <span className="font-mono text-sm text-accent tabular-nums">{skill.level}%</span>
+                <span className="hidden lg:block font-mono text-[11px] text-paper/40 max-w-[260px] truncate">
+                  {t(skill.dataKey)}
+                </span>
+              </div>
+            </motion.div>
+          ))}
+        </div>
+
+        <div className="mt-12 grid lg:grid-cols-[1fr_auto] gap-8 items-start">
+          <div>
+            <p className="kicker text-paper/60 uppercase mb-5">{t('skills.soft')}</p>
+            <div className="flex flex-wrap gap-2">
+              {softTags.map((tag) => (
+                <span
+                  key={tag}
+                  className="font-mono text-xs text-paper/80 border border-paper/20 rounded-full px-3.5 py-1.5"
+                >
+                  {tag}
+                </span>
+              ))}
+            </div>
           </div>
+          <p className="font-mono text-xs text-paper/40 max-w-xs text-right lg:pt-1">
+            // {t('skills.more')}
+          </p>
         </div>
       </div>
     </section>

@@ -1,50 +1,40 @@
-# React + TypeScript + Vite
+# Portafolio · Daniel Morales
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Portafolio profesional de [Daniel Morales](https://dmoralestech.me), Ingeniero de Software Semi Senior especializado en aplicaciones cloud-native con **Golang** y **Google Cloud (GCP)**, con experiencia full stack en React, Java y Node.js.
 
-Currently, two official plugins are available:
+## Stack
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- **React 18** + **TypeScript**
+- **Vite** como bundler
+- **Tailwind CSS** para estilos
+- **Framer Motion** para animaciones
+- **Font Awesome** para iconografía
 
-## Expanding the ESLint configuration
+## Scripts
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
-
-- Configure the top-level `parserOptions` property like this:
-
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
+```bash
+npm install       # Instalar dependencias
+npm run dev       # Servidor de desarrollo (puerto 3000)
+npm run build     # Build de producción en /dist
+npm run lint      # ESLint
+npm run preview   # Previsualizar el build
 ```
 
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
+## Estructura
 
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
-
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
 ```
+src/
+├── components/    # Header, Home, AboutMe, Skills, Curriculum (experiencia y certificaciones), Services, FAQ, Footer, Loader
+├── assets/img/    # Foto de perfil, CV y certificados
+├── App.tsx        # Composición de secciones, tema oscuro, loader
+└── main.tsx       # Punto de entrada
+```
+
+## Características
+
+- Enfoque en recorrido profesional: experiencia laboral, formación y certificaciones verificables
+- Modo oscuro/claro con persistencia en `localStorage` y detección del sistema
+- Scrollspy en la navegación
+- Loader de entrada
+- Simulador de entrevista interactivo (FAQ)
+- SEO: Open Graph, Twitter Cards, Schema.org y PWA manifest

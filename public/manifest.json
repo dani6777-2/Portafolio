@@ -1,0 +1,17 @@
+{
+  "name": "Daniel Morales | Ingeniero de Software Semi Senior",
+  "short_name": "Daniel Morales",
+  "description": "Portafolio profesional de Daniel Morales, Ingeniero de Software Semi Senior especializado en Golang y Google Cloud.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#EFEBE3",
+  "theme_color": "#EFEBE3",
+  "icons": [
+    {
+      "src": "/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    }
+  ]
+}

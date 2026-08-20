@@ -7,8 +7,10 @@
     "dev": "vite",
     "build": "CI=false vite build",
     "lint": "eslint .",
+    "typecheck": "tsc --noEmit",
+    "verify": "node scripts/check-translations.mjs && npm run lint && npm run typecheck && npm run build",
     "preview": "vite preview",
-    "test": "jest"
+    "test": "node scripts/check-translations.mjs"
   },
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^6.6.0",
