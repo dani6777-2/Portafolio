@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faLinkedin, faGithub } from '@fortawesome/free-brands-svg-icons';
 import { faEnvelope, faMapMarkerAlt, faPhone } from '@fortawesome/free-solid-svg-icons';
@@ -8,33 +8,22 @@ import Marquee from './Marquee';
 
 const Contact: React.FC = () => {
   const { t } = useLang();
-  const [form, setForm] = useState({ name: '', email: '', message: '' });
-
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    const subject = encodeURIComponent(`${t('contact.form.name')}: ${form.name}`);
-    const body = encodeURIComponent(`${form.message}\n\n— ${form.name} (${form.email})`);
-    window.location.href = `mailto:daniel.morales23@outlook.cl?subject=${subject}&body=${body}`;
-  };
 
   const details = [
-    { icon: faEnvelope, label: t('contact.email.label'), value: 'daniel.morales23@outlook.cl', href: 'mailto:daniel.morales23@outlook.cl' },
-    { icon: faPhone, label: t('contact.phone.label'), value: '+56 9 8130 9352', href: 'tel:+56981309352' },
-    { icon: faMapMarkerAlt, label: t('contact.location.label'), value: t('contact.location') },
+    { icon: faEnvelope, label: t('connect.email.label'), value: 'daniel.morales23@outlook.cl', href: 'mailto:daniel.morales23@outlook.cl' },
+    { icon: faPhone, label: t('connect.phone.label'), value: '+56 9 8130 9352', href: 'tel:+56981309352' },
+    { icon: faMapMarkerAlt, label: t('connect.location.label'), value: t('connect.location') },
   ];
 
   return (
     <section id="contact" className="pt-16 sm:pt-24">
-      <Marquee items={t('contact.marquee').split('|').map((s) => s.trim())} />
+      <Marquee items={t('connect.marquee').split('|').map((s) => s.trim())} />
 
       <div className="container-site py-20 sm:py-28">
         <div className="flex items-baseline justify-between border-b border-line/20 pb-5 mb-12">
           <p className="kicker">
             <span className="text-accent">07</span> — {t('nav.contact')}
           </p>
-          <span className="hidden sm:block font-mono text-[11px] uppercase tracking-[0.22em] text-muted">
-            {t('contact.response')}
-          </span>
         </div>
 
         <motion.h2
@@ -44,23 +33,12 @@ const Contact: React.FC = () => {
           transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
           className="font-display font-extrabold text-5xl sm:text-7xl lg:text-8xl leading-[0.95] text-ink"
         >
-          {t('contact.headline')}
+          {t('connect.headline')}
         </motion.h2>
-        <p className="mt-6 max-w-2xl text-muted text-base sm:text-lg leading-relaxed">{t('contact.subtitle')}</p>
+        <p className="mt-6 max-w-2xl text-muted text-base sm:text-lg leading-relaxed">{t('connect.subtitle')}</p>
 
-        <div className="mt-12 grid lg:grid-cols-2 gap-12">
+        <div className="mt-12 grid lg:grid-cols-2 gap-12 items-start">
           <div className="space-y-8">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: '-40px' }}
-              transition={{ duration: 0.6 }}
-              className="inline-flex items-center gap-3 font-mono text-xs uppercase tracking-widest text-accent"
-            >
-              <span className="w-2 h-2 rounded-full bg-accent animate-pulse-dot" />
-              {t('contact.status')}
-            </motion.div>
-
             <ul className="space-y-5">
               {details.map((item) => (
                 <li key={item.label} className="flex items-center gap-5">
@@ -105,62 +83,47 @@ const Contact: React.FC = () => {
             </div>
           </div>
 
-          <motion.form
-            onSubmit={handleSubmit}
+          <motion.div
             initial={{ opacity: 0, y: 24 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: '-40px' }}
             transition={{ duration: 0.7, delay: 0.1 }}
-            className="border border-line/20 p-8 sm:p-10 space-y-7"
-            data-cursor
+            className="border border-line/20 p-8 sm:p-10"
           >
-            <div className="grid sm:grid-cols-2 gap-6">
-              <label className="block">
-                <span className="kicker uppercase block mb-2">{t('contact.form.name')}</span>
-                <input
-                  required
-                  type="text"
-                  name="name"
-                  autoComplete="name"
-                  value={form.name}
-                  onChange={(e) => setForm({ ...form, name: e.target.value })}
-                  className="w-full bg-transparent border-b border-line/30 focus:border-accent outline-none py-2 text-ink transition-colors duration-300 placeholder:text-muted/60"
-                  placeholder={t('contact.form.name')}
-                />
-              </label>
-              <label className="block">
-                <span className="kicker uppercase block mb-2">{t('contact.form.email')}</span>
-                <input
-                  required
-                  type="email"
-                  name="email"
-                  autoComplete="email"
-                  value={form.email}
-                  onChange={(e) => setForm({ ...form, email: e.target.value })}
-                  className="w-full bg-transparent border-b border-line/30 focus:border-accent outline-none py-2 text-ink transition-colors duration-300 placeholder:text-muted/60"
-                  placeholder="tu@email.com"
-                />
-              </label>
+            <p className="font-display font-bold text-2xl sm:text-3xl text-ink leading-tight mb-4">
+              {t('connect.headline')}
+            </p>
+            <p className="text-muted leading-relaxed mb-6">
+              {t('connect.subtitle')}
+            </p>
+            <div className="space-y-4">
+              <a
+                href="mailto:daniel.morales23@outlook.cl"
+                className="w-full py-4 px-6 bg-ink text-paper hover:bg-accent transition-colors duration-300 font-mono text-xs uppercase tracking-widest flex items-center justify-center gap-3"
+              >
+                <FontAwesomeIcon icon={faEnvelope} />
+                daniel.morales23@outlook.cl
+              </a>
+              <a
+                href="https://www.linkedin.com/in/daniel-23dma/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-full py-4 px-6 border border-line/30 text-ink hover:border-accent hover:text-accent transition-colors duration-300 font-mono text-xs uppercase tracking-widest flex items-center justify-center gap-3"
+              >
+                <FontAwesomeIcon icon={faLinkedin} />
+                LinkedIn
+              </a>
+              <a
+                href="https://github.com/Dani6777/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-full py-4 px-6 border border-line/30 text-ink hover:border-accent hover:text-accent transition-colors duration-300 font-mono text-xs uppercase tracking-widest flex items-center justify-center gap-3"
+              >
+                <FontAwesomeIcon icon={faGithub} />
+                GitHub
+              </a>
             </div>
-            <label className="block">
-              <span className="kicker uppercase block mb-2">{t('contact.form.message')}</span>
-              <textarea
-                required
-                rows={5}
-                value={form.message}
-                onChange={(e) => setForm({ ...form, message: e.target.value })}
-                className="w-full bg-transparent border-b border-line/30 focus:border-accent outline-none py-2 text-ink transition-colors duration-300 placeholder:text-muted/60 resize-none"
-                placeholder={t('contact.form.message')}
-              />
-            </label>
-            <button
-              type="submit"
-              className="w-full py-4 px-6 bg-ink text-paper hover:bg-accent transition-colors duration-300 font-mono text-xs uppercase tracking-widest"
-            >
-              {t('contact.form.send')} → 
-            </button>
-            <p className="text-xs text-muted text-center font-mono">{t('contact.openmail')}</p>
-          </motion.form>
+          </motion.div>
         </div>
       </div>
     </section>

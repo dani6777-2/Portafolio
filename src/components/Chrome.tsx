@@ -155,15 +155,7 @@ const MenuOverlay: React.FC<{ open: boolean; onClose: () => void }> = ({ open, o
   );
 };
 
-const StatusStrip: React.FC = () => {
-  const { t } = useLang();
-  return (
-    <div className="fixed bottom-5 left-6 z-[55] hidden md:flex items-center gap-2.5">
-      <span className="w-2 h-2 rounded-full bg-accent animate-pulse-dot" />
-      <span className="kicker !tracking-[0.12em]">{t('contact.status')}</span>
-    </div>
-  );
-};
+
 
 const Chrome: React.FC = () => {
   const { t } = useLang();
@@ -198,7 +190,7 @@ const Chrome: React.FC = () => {
     <>
       <ProgressBar />
       <CustomCursor />
-      <StatusStrip />
+
 
       <AnimatePresence>
         {scrolled && (

@@ -11,6 +11,7 @@ import Certifications from './components/Certifications';
 import Faq from './components/Faq';
 import Contact from './components/Contact';
 import { useLang } from './i18n/translations';
+import CV from './assets/img/MORALES_ARIAS_DANIEL_CV.pdf';
 
 const Footer: React.FC = () => {
   const { t } = useLang();
@@ -20,8 +21,9 @@ const Footer: React.FC = () => {
         <p className="kicker">© {new Date().getFullYear()} Daniel Morales — {t('footer.rights')}</p>
         <p className="font-mono text-[11px] text-muted hidden md:block">{t('footer.built')}</p>
         <div className="flex items-center gap-6">
-          <span className="font-mono text-[11px] text-muted">{t('contact.location')}</span>
-          <span className="font-mono text-[11px] text-accent">v4.0 — go test ./... ✓</span>
+          <a href={CV} download="MORALES_ARIAS_DANIEL_CV.pdf" className="font-mono text-[11px] text-muted link-underline hover:text-ink transition-colors duration-300">{t('connect.cv')}</a>
+          <span className="font-mono text-[11px] text-muted">{t('connect.location')}</span>
+          <span className="font-mono text-[11px] text-accent">v5.0 — go test ./... ✓</span>
         </div>
       </div>
     </footer>

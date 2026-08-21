@@ -57,10 +57,10 @@ const faqs: QA[] = [
     },
   },
   {
-    q: { es: '¿Por qué deberían contratarte?', en: 'Why should we hire you?' },
+    q: { es: '¿Cuál es tu filosofía de desarrollo?', en: 'What is your development philosophy?' },
     a: {
-      es: 'Soy Ingeniero de Software Semi Senior con foco cloud-native: Golang sobre GCP, complementado con Java y React. Resultados medibles: -40% tiempos de consulta, +30% eficiencia de equipo, 86-90% de cobertura. Aporto además perspectiva de negocio por mi paso por logística, consultoría y seguros.',
-      en: "I'm a Mid-Senior Software Engineer focused on cloud-native: Golang on GCP, complemented by Java and React. Measurable results: -40% query time, +30% team efficiency, 86-90% coverage. I also bring business perspective from logistics, consulting and insurance."
+      es: 'Código que se entiende sin comentarios, arquitectura que escala sin reescribir y decisiones documentadas. Prefiero soluciones simples que funcionen a abstracciones elegantes que nadie mantiene. El ciclo completo importa: diseñar, implementar, testear, desplegar y operar.',
+      en: "Code that reads without comments, architecture that scales without rewriting, and documented decisions. I prefer simple solutions that work over elegant abstractions nobody maintains. The full cycle matters: design, implement, test, deploy and operate."
     },
   },
   {
@@ -71,17 +71,17 @@ const faqs: QA[] = [
     },
   },
   {
-    q: { es: '¿Cuál es tu mayor fortaleza y debilidad?', en: 'What are your strengths and weaknesses?' },
+    q: { es: '¿Qué aprendizaje te ha marcado más?', en: 'What learning has shaped you the most?' },
     a: {
-      es: 'Mi fortaleza es la velocidad de aprendizaje: de Java a Golang y GCP en poco tiempo. Mi debilidad era el exceso de optimización: aprendí a balancear la perfección técnica con las necesidades del negocio.',
-      en: 'My strength is learning speed: from Java to Golang and GCP in a short time. My weakness was over-tuning: I learned to balance technical perfection with business needs.'
+      es: 'Pasar de Java a Golang me enseñó que la simplicidad es una feature. Go me forzó a pensar en composición sobre herencia, en interfaces pequeñas y en no sobre-diseñar. Ese cambio de mentalidad mejoró todo mi código, incluso cuando vuelvo a Java.',
+      en: "Moving from Java to Golang taught me that simplicity is a feature. Go forced me to think in composition over inheritance, small interfaces and not over-engineering. That mindset shift improved all my code, even when I go back to Java."
     },
   },
   {
-    q: { es: '¿Qué buscas en tu próximo trabajo?', en: 'What are you looking for in your next role?' },
+    q: { es: '¿En qué estás enfocado ahora?', en: 'What are you focused on right now?' },
     a: {
-      es: 'Aplicar y expandir mi experiencia cloud-native con Golang y GCP: equipos que construyan sobre GKE o Cloud Run con CI/CD sólido, donde pueda crecer y aportar desde el diseño de arquitectura.',
-      en: 'To apply and expand my cloud-native experience with Golang and GCP: teams building on GKE or Cloud Run with solid CI/CD, where I can grow and contribute from architecture design.'
+      es: 'Profundizar en arquitectura cloud-native con Golang y GCP: patrones de resiliencia en GKE, observabilidad con OpenTelemetry, y construir herramientas internas que mejoren la productividad del equipo en Starken.',
+      en: 'Going deeper into cloud-native architecture with Golang and GCP: resilience patterns on GKE, observability with OpenTelemetry, and building internal tools that improve team productivity at Starken.'
     },
   },
 ];

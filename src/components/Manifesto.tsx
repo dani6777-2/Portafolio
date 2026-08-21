@@ -1,10 +1,9 @@
 import React, { useRef } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faDownload, faMapMarkerAlt, faEnvelope, faPhone, faGraduationCap, faLanguage, faBriefcase } from '@fortawesome/free-solid-svg-icons';
+import { faMapMarkerAlt, faEnvelope, faPhone, faGraduationCap, faLanguage, faBriefcase } from '@fortawesome/free-solid-svg-icons';
 import { animate, motion, useInView, useMotionValue, useScroll, useTransform } from 'framer-motion';
 import { useLang } from '../i18n/translations';
 import { SceneHeader } from './ui';
-import CV from '../assets/img/MORALES_ARIAS_DANIEL_CV.pdf';
 import perfilImg from '../assets/img/perfil.jpg';
 
 const WordReveal: React.FC<{ text: string }> = ({ text }) => {
@@ -109,14 +108,6 @@ const Manifesto: React.FC = () => {
             >
               <p className="text-muted leading-relaxed">
                 {t('manifesto.p1')}
-                <a
-                  href={CV}
-                  download="MORALES_ARIAS_DANIEL_CV.pdf"
-                  className="inline-flex items-center gap-2 mt-4 font-mono text-xs uppercase tracking-widest text-accent link-underline"
-                >
-                  <FontAwesomeIcon icon={faDownload} />
-                  {t('manifesto.cta')}
-                </a>
               </p>
               <p className="text-muted leading-relaxed">{t('manifesto.p2')}</p>
             </motion.div>
@@ -141,9 +132,9 @@ const Manifesto: React.FC = () => {
                 <div>
                   <h3 className="font-display font-extrabold text-xl text-ink">Daniel Morales</h3>
                   <p className="font-mono text-xs text-muted mt-1">{t('hero.role')}</p>
-                  <p className="inline-flex items-center gap-2 mt-3 font-mono text-[10px] uppercase tracking-widest text-accent border border-accent/40 rounded-full px-2.5 py-1">
-                    <span className="w-1.5 h-1.5 rounded-full bg-accent animate-pulse-dot" />
-                    {t('contact.status')}
+                  <p className="inline-flex items-center gap-2 mt-3 font-mono text-[10px] uppercase tracking-widest text-ink/70 border border-ink/20 rounded-full px-2.5 py-1">
+                    <span className="w-1.5 h-1.5 rounded-full bg-ink/50" />
+                    {t('hero.current')}
                   </p>
                 </div>
               </div>

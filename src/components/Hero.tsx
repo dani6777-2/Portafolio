@@ -1,10 +1,9 @@
 import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faLinkedin, faGithub } from '@fortawesome/free-brands-svg-icons';
-import { faDownload, faArrowDown } from '@fortawesome/free-solid-svg-icons';
+import { faArrowDown } from '@fortawesome/free-solid-svg-icons';
 import { motion } from 'framer-motion';
 import { useLang } from '../i18n/translations';
-import CV from '../assets/img/MORALES_ARIAS_DANIEL_CV.pdf';
 import perfilImg from '../assets/img/perfil.jpg';
 
 const ease = [0.22, 1, 0.36, 1] as const;
@@ -31,9 +30,9 @@ const Hero: React.FC = () => {
               transition={{ duration: 0.6, delay: 0.2 }}
               className="mb-6 flex flex-wrap items-center gap-3"
             >
-              <span className="inline-flex items-center gap-2 font-mono text-[10px] uppercase tracking-[0.18em] text-accent border border-accent/40 rounded-full px-3 py-1">
-                <span className="w-1.5 h-1.5 rounded-full bg-accent animate-pulse-dot" />
-                {t('hero.available')}
+              <span className="inline-flex items-center gap-2 font-mono text-[10px] uppercase tracking-[0.18em] text-ink border border-ink/30 rounded-full px-3 py-1">
+                <span className="w-1.5 h-1.5 rounded-full bg-ink/60" />
+                {t('hero.role')} {t('hero.current')}
               </span>
               <span className="kicker hidden sm:block">{t('hero.kicker')}</span>
             </motion.div>
@@ -66,16 +65,8 @@ const Hero: React.FC = () => {
               className="mt-8 flex flex-wrap items-center gap-4"
             >
               <a
-                href={CV}
-                download="MORALES_ARIAS_DANIEL_CV.pdf"
-                className="inline-flex items-center gap-3 px-6 py-3 rounded-full bg-ink text-paper hover:bg-accent transition-colors duration-300 font-mono text-xs uppercase tracking-widest"
-              >
-                <FontAwesomeIcon icon={faDownload} />
-                {t('hero.cv')}
-              </a>
-              <a
                 href="#manifesto"
-                className="inline-flex items-center gap-2 px-6 py-3 rounded-full border border-line/30 text-ink hover:border-accent hover:text-accent transition-colors duration-300 font-mono text-xs uppercase tracking-widest"
+                className="inline-flex items-center gap-3 px-6 py-3 rounded-full bg-ink text-paper hover:bg-accent transition-colors duration-300 font-mono text-xs uppercase tracking-widest"
               >
                 <FontAwesomeIcon icon={faArrowDown} />
                 {t('hero.scroll')}
@@ -126,7 +117,7 @@ const Hero: React.FC = () => {
                 >
                   <FontAwesomeIcon icon={faGithub} className="text-base" />
                 </a>
-                <span className="ml-auto font-mono text-[10px] text-muted">{t('contact.status')}</span>
+                <span className="ml-auto font-mono text-[10px] text-muted">{t('hero.current')}</span>
               </div>
             </div>
           </motion.div>
