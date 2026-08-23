@@ -1,0 +1,59 @@
+---
+import { translations, type Lang } from '../i18n/translations';
+import certFrontend from '../assets/img/certificado-frontend.pdf';
+import certCisco from '../assets/img/certificado-cisco.pdf';
+import certForge from '../assets/img/certificado-forge.png';
+import certJava from '../assets/img/certificado-java.pdf';
+import certSence from '../assets/img/certificado-sence.pdf';
+
+interface Props {
+  lang: Lang;
+}
+
+const { lang } = Astro.props;
+const t = (key: string) => translations[lang][key] ?? translations.es[key] ?? key;
+
+const certs = [
+  { titleKey: 'certs.frontend', metaKey: 'certs.frontend.meta', file: certFrontend, year: '2024' },
+  { titleKey: 'certs.java', metaKey: 'certs.java.meta', file: certJava, year: '2023' },
+  { titleKey: 'certs.forge', metaKey: 'certs.forge.meta', file: certForge, year: '2024' },
+  { titleKey: 'certs.cisco', metaKey: 'certs.cisco.meta', file: certCisco, year: '2024' },
+  { titleKey: 'certs.sence', metaKey: 'certs.sence.meta', file: certSence, year: '2022' },
+];
+---
+
+<section id="certs" class="py-16 sm:py-24">
+  <div class="container-term">
+    <p class="section-cmd">{t('certs.cmd')}</p>
+
+    <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-3">
+      {certs.map((cert) => (
+        <a
+          href={cert.file}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="border border-term-dim bg-term-card p-4 sm:p-5 glow-hover group flex items-start gap-3 transition-all duration-200 hover:bg-term-hover"
+        >
+          <span class="w-8 h-8 border border-term-dim flex items-center justify-center text-term-green shrink-0 group-hover:bg-term-green group-hover:text-term-bg transition-colors duration-200">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" /></svg>
+          </span>
+          <div class="min-w-0">
+            <h3 class="text-term-white font-bold text-sm group-hover:text-term-green transition-colors duration-200">{t(cert.titleKey)}</h3>
+            <p class="text-term-muted text-xs mt-1">{t(cert.metaKey)}</p>
+            <div class="mt-2 flex items-center gap-2">
+              <span class="text-term-dim text-xs">{cert.year}</span>
+              <span class="text-term-cyan text-xs opacity-0 group-hover:opacity-100 transition-opacity duration-200">{t('certs.view')}</span>
+            </div>
+          </div>
+        </a>
+      ))}
+
+      <div class="border border-dashed border-term-dim p-5 flex flex-col justify-center items-start gap-2">
+        <p class="text-term-white font-bold text-sm">{t('certs.subtitle')}</p>
+        <p class="text-term-dim text-xs">
+          <span class="text-term-green">→</span> 2026 — en curso
+        </p>
+      </div>
+    </div>
+  </div>
+</section>

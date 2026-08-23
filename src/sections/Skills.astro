@@ -1,0 +1,67 @@
+---
+import { translations, type Lang } from '../i18n/translations';
+
+interface Props {
+  lang: Lang;
+}
+
+const { lang } = Astro.props;
+const t = (key: string) => translations[lang][key] ?? translations.es[key] ?? key;
+
+const skills = [
+  { labelKey: 'skills.backend', dataKey: 'skills.data.backend', level: 92 },
+  { labelKey: 'skills.cloud', dataKey: 'skills.data.cloud', level: 88 },
+  { labelKey: 'skills.frontend', dataKey: 'skills.data.frontend', level: 85 },
+  { labelKey: 'skills.testing', dataKey: 'skills.data.testing', level: 86 },
+  { labelKey: 'skills.db', dataKey: 'skills.data.db', level: 80 },
+];
+
+function asciiBar(level: number): string {
+  const filled = Math.round(level / 5);
+  const empty = 20 - filled;
+  return '█'.repeat(filled) + '░'.repeat(empty);
+}
+---
+
+<section id="skills" class="py-16 sm:py-24 bg-term-card border-y border-term-dim">
+  <div class="container-term">
+    <p class="section-cmd">{t('skills.cmd')}</p>
+
+    <div class="space-y-0">
+      {skills.map((skill, idx) => (
+        <div class="grid gap-2 sm:grid-cols-[180px_1fr_auto] sm:items-center border-b border-term-dim/50 py-4">
+          <div class="flex items-center gap-3">
+            <span class="text-term-cyan text-xs">{String(idx + 1).padStart(2, '0')}</span>
+            <h3 class="text-term-white font-bold text-sm">{t(skill.labelKey)}</h3>
+          </div>
+
+          <div class="flex items-center gap-2">
+            <span class="text-term-green text-xs hidden sm:inline whitespace-pre">{asciiBar(skill.level)}</span>
+            <!-- Mobile bar -->
+            <div class="sm:hidden h-1.5 bg-term-dim/50 w-full relative">
+              <div class="absolute inset-y-0 left-0 bg-term-green" style={`width: ${skill.level}%`}></div>
+            </div>
+          </div>
+
+          <div class="flex items-center gap-3 sm:justify-end">
+            <span class="text-term-green text-sm font-bold tabular-nums">{skill.level}%</span>
+            <span class="hidden lg:block text-term-muted text-[10px] max-w-[240px] truncate">
+              {t(skill.dataKey)}
+            </span>
+          </div>
+        </div>
+      ))}
+    </div>
+
+    <!-- Soft skills -->
+    <div class="mt-10">
+      <p class="text-term-cyan text-xs mb-4">// {t('skills.soft')}</p>
+      <div class="flex flex-wrap gap-2">
+        {t('skills.soft.items').split('·').map((tag: string) => (
+          <span class="tag">{tag.trim()}</span>
+        ))}
+      </div>
+      <p class="text-term-dim text-xs mt-4">// {t('skills.more')}</p>
+    </div>
+  </div>
+</section>

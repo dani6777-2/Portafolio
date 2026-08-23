@@ -1,0 +1,20 @@
+---
+import { translations, type Lang } from '../i18n/translations';
+import FaqAccordion from '../components/FaqAccordion';
+
+interface Props {
+  lang: Lang;
+}
+
+const { lang } = Astro.props;
+const t = (key: string) => translations[lang][key] ?? translations.es[key] ?? key;
+---
+
+<section id="faq" class="py-16 sm:py-24">
+  <div class="container-term">
+    <p class="section-cmd">{t('faq.cmd')}</p>
+    <p class="text-term-muted text-xs mb-8">// {t('faq.subtitle')}</p>
+
+    <FaqAccordion lang={lang} client:visible />
+  </div>
+</section>

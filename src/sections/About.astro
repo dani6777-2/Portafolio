@@ -1,0 +1,69 @@
+---
+import { translations, type Lang } from '../i18n/translations';
+import perfilImg from '../assets/img/perfil.jpg';
+
+interface Props {
+  lang: Lang;
+}
+
+const { lang } = Astro.props;
+const t = (key: string) => translations[lang][key] ?? translations.es[key] ?? key;
+
+const dataRows = [
+  { key: 'about.data.role', value: t('hero.role') },
+  { key: 'about.data.location', value: 'Santiago, Chile' },
+  { key: 'about.data.email', value: 'daniel.morales23@outlook.cl', link: 'mailto:daniel.morales23@outlook.cl' },
+  { key: 'about.data.phone', value: '+56 9 8130 9352', link: 'tel:+56981309352' },
+  { key: 'about.data.studies', value: t('about.data.studies.value') },
+  { key: 'about.data.langs', value: t('about.data.langs.value') },
+];
+---
+
+<section id="about" class="py-16 sm:py-24">
+  <div class="container-term">
+    <p class="section-cmd">{t('about.cmd')}</p>
+
+    <div class="grid lg:grid-cols-[1.3fr_1fr] gap-10 items-start">
+      <div>
+        <h2 class="text-term-white font-bold text-xl sm:text-3xl leading-snug max-w-2xl mb-6">
+          {t('about.statement')}
+        </h2>
+
+        <div class="grid sm:grid-cols-2 gap-6 mt-6">
+          <p class="text-term-text text-sm leading-relaxed">{t('about.p1')}</p>
+          <p class="text-term-text text-sm leading-relaxed">{t('about.p2')}</p>
+        </div>
+      </div>
+
+      <!-- Config card -->
+      <div class="border border-term-dim bg-term-card glow-hover lg:sticky lg:top-20">
+        <div class="terminal-bar">
+          <span class="terminal-dot terminal-dot-red"></span>
+          <span class="terminal-dot terminal-dot-yellow"></span>
+          <span class="terminal-dot terminal-dot-green"></span>
+          <span class="text-term-dim text-xs ml-3">config.yaml</span>
+        </div>
+        <div class="p-5 space-y-3">
+          <div class="flex items-center gap-4 mb-4">
+            <img src={perfilImg.src} alt="Daniel Morales" loading="lazy" decoding="async" class="w-14 h-18 object-cover grayscale border border-term-dim" />
+            <div>
+              <p class="text-term-white font-bold text-sm">Daniel Morales</p>
+              <p class="text-term-muted text-xs">{t('hero.role')}</p>
+            </div>
+          </div>
+
+          {dataRows.map((row) => (
+            <div class="flex items-start gap-2 text-xs">
+              <span class="text-term-cyan w-24 shrink-0">{t(row.key)}:</span>
+              {row.link ? (
+                <a href={row.link} class="link-term text-term-text">{row.value}</a>
+              ) : (
+                <span class="text-term-text">{row.value}</span>
+              )}
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
