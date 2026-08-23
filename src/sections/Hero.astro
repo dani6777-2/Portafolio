@@ -1,0 +1,131 @@
+---
+import { translations, type Lang } from '../i18n/translations';
+
+interface Props {
+  lang: Lang;
+}
+
+const { lang } = Astro.props;
+const t = (key: string) => translations[lang][key] ?? translations.es[key] ?? key;
+
+import perfilImg from '../assets/img/perfil.jpg';
+---
+
+<section id="hero" class="relative min-h-screen flex flex-col justify-center overflow-hidden">
+  <!-- Decorative code background -->
+  <div class="code-bg top-10 left-4 w-48 opacity-30 hidden lg:block" aria-hidden="true">
+    <pre>func main() &#123;
+  srv := http.NewServer()
+  srv.Handle("/api",
+    middleware.Auth(),
+    handler.Routes(),
+  )
+  log.Fatal(srv.Listen(":8080"))
+&#125;</pre>
+  </div>
+  <div class="code-bg top-20 right-4 w-52 opacity-20 hidden lg:block text-right" aria-hidden="true">
+    <pre>type Engineer struct &#123;
+  Name    string
+  Role    string
+  Stack   []string
+  Years   int
+&#125;</pre>
+  </div>
+
+  <div class="container-term pt-24 pb-16 relative z-10">
+    <!-- Terminal window -->
+    <div class="terminal-window max-w-3xl">
+      <div class="terminal-bar">
+        <span class="terminal-dot terminal-dot-red"></span>
+        <span class="terminal-dot terminal-dot-yellow"></span>
+        <span class="terminal-dot terminal-dot-green"></span>
+        <span class="text-term-dim text-xs ml-3">dmorales@portfolio:~</span>
+      </div>
+
+      <div class="p-5 sm:p-8 space-y-4">
+        <!-- whoami command -->
+        <div class="text-term-green text-sm">
+          <span class="text-term-dim">$</span> whoami
+        </div>
+
+        <!-- Name - large -->
+        <h1 class="text-term-white font-extrabold text-4xl sm:text-6xl lg:text-7xl leading-none tracking-tight">
+          DANIEL<br/>
+          <span class="text-term-green">MORALES</span>
+        </h1>
+
+        <!-- Role output -->
+        <div class="space-y-1 text-sm">
+          <p>
+            <span class="text-term-green">{t('hero.arrow')}</span>
+            <span class="text-term-white ml-2">{t('hero.role')}</span>
+            <span class="text-term-cyan ml-2">{t('hero.current')}</span>
+          </p>
+          <p>
+            <span class="text-term-green">{t('hero.arrow')}</span>
+            <span class="ml-2">{t('hero.location')}</span>
+          </p>
+          <p class="text-term-text mt-3 max-w-xl leading-relaxed">{t('hero.lead')}</p>
+        </div>
+
+        <!-- Stack -->
+        <div class="flex flex-wrap gap-2 mt-4">
+          {t('hero.stack').split('·').map((s: string) => (
+            <span class="tag">{s.trim()}</span>
+          ))}
+        </div>
+
+        <!-- Stats -->
+        <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 mt-6 pt-4 border-t border-term-dim">
+          <div>
+            <p class="text-term-green text-2xl font-bold">4</p>
+            <p class="text-term-muted text-xs">{t('hero.stat.years')}</p>
+          </div>
+          <div>
+            <p class="text-term-green text-2xl font-bold">3</p>
+            <p class="text-term-muted text-xs">{t('hero.stat.companies')}</p>
+          </div>
+          <div>
+            <p class="text-term-green text-2xl font-bold">5</p>
+            <p class="text-term-muted text-xs">{t('hero.stat.certs')}</p>
+          </div>
+          <div>
+            <p class="text-term-green text-2xl font-bold">4</p>
+            <p class="text-term-muted text-xs">{t('hero.stat.projects')}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Right side: profile card -->
+    <div class="mt-8 lg:absolute lg:top-24 lg:right-8 lg:mt-0 max-w-xs">
+      <div class="border border-term-dim bg-term-card p-4 glow-hover">
+        <div class="aspect-[4/5] overflow-hidden mb-4 border border-term-dim">
+          <img
+            src={perfilImg.src}
+            alt="Daniel Morales"
+            loading="eager"
+            decoding="async"
+            class="w-full h-full object-cover grayscale brightness-75 hover:brightness-100 hover:grayscale-0 transition-all duration-700"
+          />
+        </div>
+        <p class="text-term-white font-bold text-sm">Daniel Morales</p>
+        <p class="text-term-muted text-xs mt-0.5">{t('hero.role')}</p>
+        <div class="mt-3 flex items-center gap-3">
+          <a href="https://www.linkedin.com/in/daniel-23dma/" target="_blank" rel="me noopener noreferrer" aria-label="LinkedIn" class="w-8 h-8 border border-term-dim flex items-center justify-center text-term-text hover:border-term-green hover:text-term-green transition-colors duration-200">
+            <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+          </a>
+          <a href="https://github.com/Dani6777/" target="_blank" rel="me noopener noreferrer" aria-label="GitHub" class="w-8 h-8 border border-term-dim flex items-center justify-center text-term-text hover:border-term-green hover:text-term-green transition-colors duration-200">
+            <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>
+          </a>
+          <span class="ml-auto text-term-muted text-[10px]">{t('hero.current')}</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Scroll indicator -->
+    <div class="mt-12 text-term-dim text-xs animate-pulse">
+      {t('hero.scroll')}
+    </div>
+  </div>
+</section>

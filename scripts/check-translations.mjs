@@ -3,11 +3,11 @@ import { readFileSync, readdirSync, statSync } from 'node:fs';
 import { join } from 'node:path';
 
 const root = new URL('..', import.meta.url).pathname;
-const i18nPath = join(root, 'src/i18n/translations.tsx');
+const i18nPath = join(root, 'src/i18n/translations.ts');
 const source = readFileSync(i18nPath, 'utf8');
 
-const esBlock = source.split(/^const es = \{/m)[1].split(/^const en/m)[0];
-const enBlock = source.split(/^const en: Record/m)[1];
+const esBlock = source.split(/^const es: Record/m)[1].split(/^const en: Record/m)[0];
+const enBlock = source.split(/^const en: Record/m)[1].split(/^export const translations/m)[0];
 
 const esKeys = new Set([...esBlock.matchAll(/^\s*'([^']+)':/gm)].map((m) => m[1]));
 const enKeys = new Set([...enBlock.matchAll(/^\s*'([^']+)':/gm)].map((m) => m[1]));
@@ -19,7 +19,7 @@ function collectFiles(dir) {
     if (statSync(full).isDirectory()) {
       if (entry === 'i18n' || entry === 'assets') continue;
       out.push(...collectFiles(full));
-    } else if (/\.(tsx|ts)$/.test(entry)) {
+    } else if (/\.(tsx|ts|astro)$/.test(entry)) {
       out.push(full);
     }
   }
@@ -29,13 +29,11 @@ function collectFiles(dir) {
 const used = new Set();
 for (const file of collectFiles(join(root, 'src'))) {
   const content = readFileSync(file, 'utf8');
-  for (const m of content.matchAll(/\b(?:t|translate)\(['"]([^'" ]+)['"]/g)) used.add(m[1]);
+  for (const m of content.matchAll(/\bt\(['"]([^'" ]+)['"]/g)) used.add(m[1]);
 }
 
 const missingEs = [...used].filter((k) => !esKeys.has(k));
 const missingEn = [...used].filter((k) => !enKeys.has(k));
-const orphanEs = [...esKeys].filter((k) => !used.has(k));
-const orphanEn = [...enKeys].filter((k) => !used.has(k));
 
 let exitCode = 0;
 if (missingEs.length) {

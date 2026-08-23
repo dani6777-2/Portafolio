@@ -1,0 +1,73 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Hero from '../sections/Hero.astro';
+import About from '../sections/About.astro';
+import Experience from '../sections/Experience.astro';
+import Projects from '../sections/Projects.astro';
+import Skills from '../sections/Skills.astro';
+import Certs from '../sections/Certs.astro';
+import Faq from '../sections/Faq.astro';
+import Connect from '../sections/Connect.astro';
+import TerminalLoader from '../components/TerminalLoader';
+import TerminalNav from '../components/TerminalNav';
+import { translations, type Lang } from '../i18n/translations';
+
+// Detect language from localStorage (via cookie or default)
+function getLang(): Lang {
+  // In SSG, we default to 'es'. Client-side JS handles the toggle & reload.
+  return 'es';
+}
+
+const lang = getLang();
+const t = (key: string) => translations[lang][key] ?? translations.es[key] ?? key;
+---
+
+<Layout
+  title={t('nav.title')}
+  description={t('about.statement')}
+  lang={lang}
+>
+  <TerminalLoader lang={lang} client:load />
+  <TerminalNav lang={lang} client:load />
+
+  <main>
+    <Hero lang={lang} />
+    <About lang={lang} />
+    <Experience lang={lang} />
+    <Projects lang={lang} />
+    <Skills lang={lang} />
+    <Certs lang={lang} />
+    <Faq lang={lang} />
+    <Connect lang={lang} />
+  </main>
+
+  <footer class="border-t border-term-dim">
+    <div class="container-term py-6 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3">
+      <p class="text-term-muted text-xs">© {new Date().getFullYear()} Daniel Morales — {t('footer.rights')}</p>
+      <p class="text-term-dim text-xs hidden md:block">{t('footer.built')}</p>
+      <div class="flex items-center gap-4">
+        <span class="text-term-muted text-xs">{t('connect.location')}</span>
+        <span class="text-term-green text-xs">{t('footer.version')}</span>
+      </div>
+    </div>
+  </footer>
+</Layout>
+
+<script>
+  // Client-side language detection — reload with correct lang if needed
+  const savedLang = localStorage.getItem('lang');
+  if (savedLang === 'en') {
+    // The page was built as 'es', but user wants 'en'
+    // This is handled by the LangToggle reload mechanism
+  }
+
+  // Scroll progress bar
+  const bar = document.getElementById('progress-bar');
+  if (bar) {
+    window.addEventListener('scroll', () => {
+      const h = document.documentElement.scrollHeight - window.innerHeight;
+      const p = h > 0 ? (window.scrollY / h) * 100 : 0;
+      bar.style.width = `${p}%`;
+    }, { passive: true });
+  }
+</script>

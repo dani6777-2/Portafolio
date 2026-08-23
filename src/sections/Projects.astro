@@ -1,0 +1,109 @@
+---
+import { translations, type Lang } from '../i18n/translations';
+
+interface Props {
+  lang: Lang;
+}
+
+const { lang } = Astro.props;
+const t = (key: string) => translations[lang][key] ?? translations.es[key] ?? key;
+
+const projects = [
+  {
+    index: '01',
+    nameKey: 'projects.logistics.name',
+    roleKey: 'projects.logistics.role',
+    descKey: 'projects.logistics.desc',
+    tagsKey: 'projects.logistics.tags',
+    featured: true,
+    metrics: [
+      { value: '+30%', labelKey: 'projects.logistics.m1' },
+      { value: '99.9%', labelKey: 'projects.logistics.m2' },
+      { value: '40+', labelKey: 'projects.logistics.m3' },
+    ],
+  },
+  {
+    index: '02',
+    nameKey: 'projects.insurance.name',
+    roleKey: 'projects.insurance.role',
+    descKey: 'projects.insurance.desc',
+    tagsKey: 'projects.insurance.tags',
+    featured: false,
+    metrics: [
+      { value: '+30%', labelKey: 'projects.insurance.m1' },
+      { value: '88%', labelKey: 'projects.insurance.m2' },
+      { value: '12', labelKey: 'projects.insurance.m3' },
+    ],
+  },
+  {
+    index: '03',
+    nameKey: 'projects.files.name',
+    roleKey: 'projects.files.role',
+    descKey: 'projects.files.desc',
+    tagsKey: 'projects.files.tags',
+    featured: false,
+    metrics: [
+      { value: '+40%', labelKey: 'projects.files.m1' },
+      { value: '86%', labelKey: 'projects.files.m2' },
+      { value: 'λ', labelKey: 'projects.files.m3' },
+    ],
+  },
+  {
+    index: '04',
+    nameKey: 'projects.quarkus.name',
+    roleKey: 'projects.quarkus.role',
+    descKey: 'projects.quarkus.desc',
+    tagsKey: 'projects.quarkus.tags',
+    featured: false,
+    metrics: [
+      { value: '3.x', labelKey: 'projects.quarkus.m1' },
+      { value: '−30%', labelKey: 'projects.quarkus.m2' },
+      { value: 'fast', labelKey: 'projects.quarkus.m3' },
+    ],
+  },
+];
+---
+
+<section id="projects" class="py-16 sm:py-24">
+  <div class="container-term">
+    <p class="section-cmd">{t('projects.cmd')}</p>
+    <p class="text-term-muted text-xs mb-8">// {t('projects.subtitle')}</p>
+
+    <div class="grid md:grid-cols-2 gap-4">
+      {projects.map((project) => (
+        <article class={`border border-term-dim bg-term-card p-5 sm:p-7 glow-hover group transition-all duration-300 hover:bg-term-hover ${project.featured ? 'md:col-span-2' : ''}`}>
+          <div class={project.featured ? 'grid md:grid-cols-[1.15fr_1fr] gap-6 items-start' : ''}>
+            <div>
+              <div class="flex items-baseline justify-between mb-4">
+                <span class="text-term-green text-xs">{project.index}</span>
+                <span class="text-term-muted text-xs">{t(project.roleKey)}</span>
+              </div>
+
+              <h3 class={`text-term-white font-bold mb-3 group-hover:text-term-green transition-colors duration-200 ${project.featured ? 'text-2xl sm:text-4xl' : 'text-xl sm:text-2xl'}`}>
+                {t(project.nameKey)}
+              </h3>
+              <p class="text-term-text text-sm leading-relaxed">{t(project.descKey)}</p>
+            </div>
+
+            <div class={project.featured ? 'flex flex-col justify-between gap-4' : ''}>
+              <div class="flex flex-wrap gap-1.5 mt-4">
+                {t(project.tagsKey).split('·').map((tag: string) => (
+                  <span class="tag">{tag.trim()}</span>
+                ))}
+              </div>
+
+              <div class={`grid grid-cols-3 gap-3 ${project.featured ? '' : 'mt-5'} pt-4 border-t border-term-dim`}>
+                {project.metrics.map((m) => (
+                  <div>
+                    <p class="text-term-green font-bold text-lg leading-none">{m.value}</p>
+                    <p class="text-term-muted text-[10px] mt-1">{t(m.labelKey)}</p>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        </article>
+      ))}
+    </div>
+  </div>
+</section>

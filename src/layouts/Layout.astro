@@ -1,0 +1,86 @@
+---
+import '../styles/global.css';
+
+interface Props {
+  title: string;
+  description: string;
+  lang: string;
+}
+
+const { title, description, lang } = Astro.props;
+---
+
+<!DOCTYPE html>
+<html lang={lang}>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0" />
+
+    <!-- SEO -->
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <meta name="keywords" content="ingeniero de software, golang, go, gcp, google cloud, cloud-native, microservicios, kubernetes, gke, spring boot, java, react, chile" />
+    <meta name="author" content="Daniel Morales" />
+    <meta name="robots" content="index, follow" />
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" sizes="any" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <meta name="theme-color" content="#0a0a0a" />
+    <link rel="manifest" href="/manifest.json" />
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://dmoralestech.me" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content="https://dmoralestech.me/og-image.jpg" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:site_name" content="Daniel Morales Portfolio" />
+    <meta property="og:locale" content="es_CL" />
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content="https://dmoralestech.me/og-image.jpg" />
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Canonical -->
+    <link rel="canonical" href="https://dmoralestech.me" />
+
+    <!-- Schema.org -->
+    <script type="application/ld+json" set:html={JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "Person",
+      "name": "Daniel Morales",
+      "jobTitle": "Ingeniero de Software Semi Senior",
+      "url": "https://dmoralestech.me",
+      "image": "https://dmoralestech.me/og-image.jpg",
+      "description": description,
+      "email": "mailto:daniel.morales23@outlook.cl",
+      "telephone": "+56981309352",
+      "address": { "@type": "PostalAddress", "addressLocality": "Santiago", "addressCountry": "CL" },
+      "alumniOf": { "@type": "EducationalOrganization", "name": "INACAP" },
+      "sameAs": ["https://www.linkedin.com/in/daniel-23dma/", "https://github.com/Dani6777/"],
+      "knowsAbout": ["Golang", "Google Cloud Platform", "Kubernetes", "GKE", "Microservicios", "Spring Boot", "React", "Java"],
+      "worksFor": { "@type": "Organization", "name": "Starken" }
+    })} />
+
+    <!-- PWA -->
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="apple-mobile-web-app-title" content="Daniel Morales" />
+  </head>
+  <body class="scanlines">
+    <slot />
+  </body>
+</html>
