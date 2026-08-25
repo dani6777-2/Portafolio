@@ -7,6 +7,7 @@ import Projects from '../sections/Projects.astro';
 import Skills from '../sections/Skills.astro';
 import Certs from '../sections/Certs.astro';
 import Faq from '../sections/Faq.astro';
+import Services from '../sections/Services.astro';
 import Connect from '../sections/Connect.astro';
 import TerminalLoader from '../components/TerminalLoader';
 import TerminalNav from '../components/TerminalNav';
@@ -38,6 +39,7 @@ const t = (key: string) => translations[lang][key] ?? translations.es[key] ?? ke
     <Skills lang={lang} />
     <Certs lang={lang} />
     <Faq lang={lang} />
+    <Services lang={lang} />
     <Connect lang={lang} />
   </main>
 

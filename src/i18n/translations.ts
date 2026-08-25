@@ -36,6 +36,7 @@ const es: Record<string, string> = {
   'nav.skills': '~/skills',
   'nav.certs': '~/certs',
   'nav.faq': '~/faq',
+  'nav.services': '~/services',
   'nav.contact': '~/connect',
 
   'hero.whoami': '$ whoami',
@@ -161,6 +162,57 @@ const es: Record<string, string> = {
   'projects.quarkus.m2': 'menor footprint',
   'projects.quarkus.m3': 'arranque nativo',
 
+  'svc.cmd': '$ cat services.json',
+  'svc.title': 'Servicios Técnicos',
+  'svc.subtitle': 'mantenimiento profesional de equipos con informe técnico incluido',
+  'svc.cta': 'Agenda tu servicio',
+  'svc.includes': 'incluye',
+  'svc.from': 'desde',
+
+  'svc.1.name': 'Limpieza Básica PC',
+  'svc.1.price': '$20.000–$25.000',
+  'svc.1.icon': '🟢',
+  'svc.1.items': 'Limpieza exterior e interior · Ventiladores y filtros · Eliminación de polvo · Organización de cables · Inspección visual',
+
+  'svc.2.name': 'Mantenimiento Completo PC',
+  'svc.2.price': '$35.000–$45.000',
+  'svc.2.icon': '🔵',
+  'svc.2.items': 'Desmontaje parcial · Limpieza profunda (ventiladores, disipador, GPU) · Limpieza de fuente (externa/interna según diseño) · Cambio de pasta térmica CPU · Optimización de flujo de aire · Test de temperaturas',
+
+  'svc.3.name': 'Mantenimiento Notebook',
+  'svc.3.price': '$40.000–$55.000',
+  'svc.3.icon': '💻',
+  'svc.3.items': 'Desarme completo · Limpieza interna (ventilador, disipador) · Cambio de pasta térmica · Limpieza de pantalla, teclado y puertos · Diagnóstico térmico · Test final',
+
+  'svc.4.name': 'Mantenimiento Consola',
+  'svc.4.price': '$35.000–$55.000',
+  'svc.4.icon': '🎮',
+  'svc.4.desc': 'PS4 / PS5 / Xbox / Nintendo',
+  'svc.4.items': 'Desarme · Limpieza profunda (ventilación, ventilador, disipador) · Cambio de pasta térmica · Test de funcionamiento',
+  'svc.4.note': 'PS5 con metal líquido: servicio no disponible hasta tener capacitación y herramientas específicas',
+
+  'svc.5.name': 'Diagnóstico',
+  'svc.5.price': '$10.000–$15.000',
+  'svc.5.icon': '🔎',
+  'svc.5.items': 'Temperaturas · SMART · RAM · CPU · GPU · Ventiladores · Estado general · Pruebas de estabilidad',
+  'svc.5.note': 'Descontable si contrata mantenimiento posterior',
+
+  'svc.diff.title': 'Tu informe técnico',
+  'svc.diff.desc': 'No entrego simplemente "equipo limpio". Entrego un informe técnico profesional con datos medibles.',
+  'svc.diff.before': 'antes',
+  'svc.diff.after': 'después',
+  'svc.diff.result': 'resultado',
+
+  'svc.process.title': 'Proceso de atención',
+  'svc.process.steps': 'Contacto · Agenda · Recepción · Fotografías del equipo · Registro de estado · Diagnóstico inicial · Presupuesto · Autorización · Mantenimiento · Pruebas · Informe · Fotografías finales · Entrega · Garantía',
+
+  'svc.warranty.title': 'Garantía del servicio',
+  'svc.warranty.yes': 'Garantizo: limpieza correcta, trabajos contratados realizados, componentes intervenidos correctamente instalados.',
+  'svc.warranty.no': 'No cubre: fallas previas, baterías degradadas, discos dañados, pantallas defectuosas, problemas de placa, fallas no relacionadas al servicio.',
+
+  'svc.delivery.title': 'Entrega profesional',
+  'svc.delivery.items': 'Equipo limpio · Microfibra · Cableado ordenado · Informe PDF · Temperaturas antes/después · Recomendaciones · Fecha del próximo mantenimiento (6–12 meses)',
+
   'connect.cmd': '$ ping daniel',
   'connect.headline': 'Conectemos',
   'connect.subtitle': 'Siempre abierto a conversaciones sobre ingeniería, colaboración open source o simplemente compartir ideas.',
@@ -196,6 +248,7 @@ const en: Record<string, string> = {
   'nav.skills': '~/skills',
   'nav.certs': '~/certs',
   'nav.faq': '~/faq',
+  'nav.services': '~/services',
   'nav.contact': '~/connect',
 
   'hero.whoami': '$ whoami',
@@ -320,6 +373,57 @@ const en: Record<string, string> = {
   'projects.quarkus.m1': '3.10.1',
   'projects.quarkus.m2': 'smaller footprint',
   'projects.quarkus.m3': 'native startup',
+
+  'svc.cmd': '$ cat services.json',
+  'svc.title': 'Tech Services',
+  'svc.subtitle': 'professional hardware maintenance with technical report included',
+  'svc.cta': 'Book your service',
+  'svc.includes': 'includes',
+  'svc.from': 'from',
+
+  'svc.1.name': 'Basic PC Cleaning',
+  'svc.1.price': '$20.000–$25.000 CLP',
+  'svc.1.icon': '🟢',
+  'svc.1.items': 'Exterior & interior cleaning · Fans and filters · Dust removal · Cable management · Visual inspection',
+
+  'svc.2.name': 'Full PC Maintenance',
+  'svc.2.price': '$35.000–$45.000 CLP',
+  'svc.2.icon': '🔵',
+  'svc.2.items': 'Partial disassembly · Deep cleaning (fans, heatsink, GPU) · PSU cleaning (external/internal if safe) · CPU thermal paste replacement · Airflow optimization · Temperature testing',
+
+  'svc.3.name': 'Notebook Maintenance',
+  'svc.3.price': '$40.000–$55.000 CLP',
+  'svc.3.icon': '💻',
+  'svc.3.items': 'Full disassembly · Internal cleaning (fan, heatsink) · Thermal paste replacement · Screen, keyboard and port cleaning · Thermal diagnostics · Final testing',
+
+  'svc.4.name': 'Console Maintenance',
+  'svc.4.price': '$35.000–$55.000 CLP',
+  'svc.4.icon': '🎮',
+  'svc.4.desc': 'PS4 / PS5 / Xbox / Nintendo',
+  'svc.4.items': 'Disassembly · Deep cleaning (ventilation, fan, heatsink) · Thermal paste replacement · Function testing',
+  'svc.4.note': 'PS5 with liquid metal: service not available until specific training and tools are acquired',
+
+  'svc.5.name': 'Diagnostics',
+  'svc.5.price': '$10.000–$15.000 CLP',
+  'svc.5.icon': '🔎',
+  'svc.5.items': 'Temperatures · SMART · RAM · CPU · GPU · Fans · Overall condition · Stability testing',
+  'svc.5.note': 'Deductible if you book maintenance afterwards',
+
+  'svc.diff.title': 'Your technical report',
+  'svc.diff.desc': 'I don\'t just deliver "clean equipment". I deliver a professional technical report with measurable data.',
+  'svc.diff.before': 'before',
+  'svc.diff.after': 'after',
+  'svc.diff.result': 'result',
+
+  'svc.process.title': 'Service process',
+  'svc.process.steps': 'Contact · Schedule · Reception · Equipment photos · Condition log · Initial diagnostics · Quote · Authorization · Maintenance · Testing · Report · Final photos · Delivery · Warranty',
+
+  'svc.warranty.title': 'Service warranty',
+  'svc.warranty.yes': 'Guaranteed: proper cleaning, contracted work completed, intervened components correctly installed.',
+  'svc.warranty.no': 'Not covered: pre-existing faults, degraded batteries, damaged disks, defective screens, board issues, unrelated failures.',
+
+  'svc.delivery.title': 'Professional delivery',
+  'svc.delivery.items': 'Clean equipment · Microfiber cloth · Organized cabling · PDF report · Before/after temperatures · Recommendations · Next maintenance date (6–12 months)',
 
   'connect.cmd': '$ ping daniel',
   'connect.headline': "Let's connect",

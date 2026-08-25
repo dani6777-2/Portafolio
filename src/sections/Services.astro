@@ -1,0 +1,200 @@
+---
+import { translations, type Lang } from '../i18n/translations';
+
+interface Props {
+  lang: Lang;
+}
+
+const { lang } = Astro.props;
+const t = (key: string) => translations[lang][key] ?? translations.es[key] ?? key;
+
+const services = [
+  { id: 1, featured: true },
+  { id: 2, featured: true },
+  { id: 3, featured: false },
+  { id: 4, featured: false },
+  { id: 5, featured: false },
+];
+
+const processSteps = t('svc.process.steps').split('·').map((s: string) => s.trim());
+
+// Demo thermal data for the differentiator section
+const thermalDemo = [
+  { component: 'CPU Idle', before: '68°C', after: '43°C', delta: '↓ 25°C' },
+  { component: 'CPU Load', before: '95°C', after: '74°C', delta: '↓ 21°C' },
+  { component: 'GPU',      before: '82°C', after: '69°C', delta: '↓ 13°C' },
+];
+---
+
+<section id="services" class="py-16 sm:py-24">
+  <div class="container-term">
+    <p class="section-cmd">{t('svc.cmd')}</p>
+    <p class="text-term-muted text-xs mb-10">// {t('svc.subtitle')}</p>
+
+    <!-- Service Cards Grid -->
+    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-3">
+      {services.map((svc) => {
+        const hasDesc = translations[lang][`svc.${svc.id}.desc`];
+        const hasNote = translations[lang][`svc.${svc.id}.note`];
+        return (
+          <article class={`border border-term-dim bg-term-card p-5 sm:p-6 glow-hover group transition-all duration-300 hover:bg-term-hover flex flex-col ${svc.featured ? 'lg:row-span-1' : ''}`}>
+            {/* Header */}
+            <div class="flex items-start justify-between mb-4">
+              <div>
+                <span class="text-2xl" aria-hidden="true">{t(`svc.${svc.id}.icon`)}</span>
+                <h3 class="text-term-white font-bold text-lg mt-2 group-hover:text-term-green transition-colors duration-200">
+                  {t(`svc.${svc.id}.name`)}
+                </h3>
+                {hasDesc && (
+                  <p class="text-term-cyan text-xs mt-1">{hasDesc}</p>
+                )}
+              </div>
+              <div class="text-right shrink-0">
+                <p class="text-term-green font-bold text-sm">{t(`svc.${svc.id}.price`)}</p>
+              </div>
+            </div>
+
+            {/* Items */}
+            <div class="flex-1">
+              <p class="text-term-muted text-[10px] uppercase tracking-wider mb-2">{t('svc.includes')}:</p>
+              <ul class="space-y-1.5">
+                {t(`svc.${svc.id}.items`).split('·').map((item: string) => (
+                  <li class="text-term-text text-xs flex gap-2">
+                    <span class="text-term-green shrink-0">→</span>
+                    <span>{item.trim()}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            {/* Note */}
+            {hasNote && (
+              <p class="text-term-cyan text-[10px] mt-4 pt-3 border-t border-term-dim">
+                ⓘ {hasNote}
+              </p>
+            )}
+          </article>
+        );
+      })}
+
+      {/* CTA card */}
+      <a href="#connect"
+        class="border border-dashed border-term-green/40 bg-term-bg p-5 sm:p-6 flex flex-col justify-center items-center gap-3 hover:border-term-green hover:bg-term-green/5 transition-all duration-300 text-center">
+        <span class="text-term-green text-3xl">+</span>
+        <p class="text-term-green font-bold text-sm">{t('svc.cta')}</p>
+        <p class="text-term-muted text-xs">daniel.morales23@outlook.cl</p>
+      </a>
+    </div>
+
+    <!-- Differentiator: Technical Report -->
+    <div class="mt-14 border border-term-dim bg-term-card">
+      <div class="terminal-bar">
+        <span class="terminal-dot terminal-dot-red"></span>
+        <span class="terminal-dot terminal-dot-yellow"></span>
+        <span class="terminal-dot terminal-dot-green"></span>
+        <span class="text-term-dim text-xs ml-3">thermal_report.log</span>
+      </div>
+      <div class="p-5 sm:p-7">
+        <h3 class="text-term-white font-bold text-xl sm:text-2xl mb-2">{t('svc.diff.title')}</h3>
+        <p class="text-term-text text-sm mb-6 max-w-lg">{t('svc.diff.desc')}</p>
+
+        {/* Thermal table */}
+        <div class="overflow-x-auto">
+          <table class="w-full text-xs">
+            <thead>
+              <tr class="text-term-muted border-b border-term-dim">
+                <th class="text-left py-2 font-normal uppercase tracking-wider">component</th>
+                <th class="text-center py-2 font-normal uppercase tracking-wider text-term-red">{t('svc.diff.before')}</th>
+                <th class="text-center py-2 font-normal uppercase tracking-wider text-term-green">{t('svc.diff.after')}</th>
+                <th class="text-right py-2 font-normal uppercase tracking-wider">{t('svc.diff.result')}</th>
+              </tr>
+            </thead>
+            <tbody>
+              {thermalDemo.map((row) => (
+                <tr class="border-b border-term-dim/30">
+                  <td class="py-3 text-term-white font-bold">{row.component}</td>
+                  <td class="py-3 text-center text-term-red">{row.before}</td>
+                  <td class="py-3 text-center text-term-green">{row.after}</td>
+                  <td class="py-3 text-right text-term-cyan font-bold">{row.delta}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+
+        {/* Visual bar comparison */}
+        <div class="mt-6 grid sm:grid-cols-3 gap-4">
+          {thermalDemo.map((row) => (
+            <div>
+              <p class="text-term-muted text-[10px] uppercase tracking-wider mb-2">{row.component}</p>
+              <div class="space-y-1">
+                <div class="flex items-center gap-2">
+                  <div class="h-2 bg-term-red/30 relative" style={`width: ${parseInt(row.before)}%`}>
+                    <div class="absolute inset-y-0 left-0 bg-term-red" style="width: 100%"></div>
+                  </div>
+                  <span class="text-term-red text-[10px] shrink-0">{row.before}</span>
+                </div>
+                <div class="flex items-center gap-2">
+                  <div class="h-2 bg-term-green/30 relative" style={`width: ${parseInt(row.after)}%`}>
+                    <div class="absolute inset-y-0 left-0 bg-term-green" style="width: 100%"></div>
+                  </div>
+                  <span class="text-term-green text-[10px] shrink-0">{row.after}</span>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+
+    <!-- Process Flow -->
+    <div class="mt-10">
+      <h3 class="text-term-white font-bold text-sm mb-4">
+        <span class="text-term-green">→</span> {t('svc.process.title')}
+      </h3>
+      <div class="flex flex-wrap gap-0 items-center">
+        {processSteps.map((step, i) => (
+          <div class="flex items-center">
+            <span class={`text-xs px-2.5 py-1.5 border transition-colors duration-200 ${
+              i === 0 ? 'border-term-green text-term-green bg-term-green/10' :
+              i === processSteps.length - 1 ? 'border-term-cyan text-term-cyan' :
+              'border-term-dim text-term-text hover:border-term-green hover:text-term-green'
+            }`}>
+              <span class="text-term-dim mr-1">{String(i + 1).padStart(2, '0')}</span>
+              {step}
+            </span>
+            {i < processSteps.length - 1 && (
+              <span class="text-term-dim text-xs px-1">→</span>
+            )}
+          </div>
+        ))}
+      </div>
+    </div>
+
+    <!-- Warranty + Delivery -->
+    <div class="mt-10 grid md:grid-cols-2 gap-3">
+      <div class="border border-term-dim p-5 bg-term-card glow-hover">
+        <h4 class="text-term-white font-bold text-sm mb-3">
+          <span class="text-term-green">🛡️</span> {t('svc.warranty.title')}
+        </h4>
+        <p class="text-term-green text-xs mb-2">
+          <span class="text-term-dim mr-1">✓</span>{t('svc.warranty.yes')}
+        </p>
+        <p class="text-term-red/70 text-xs">
+          <span class="text-term-dim mr-1">✗</span>{t('svc.warranty.no')}
+        </p>
+      </div>
+
+      <div class="border border-term-dim p-5 bg-term-card glow-hover">
+        <h4 class="text-term-white font-bold text-sm mb-3">
+          <span class="text-term-green">📦</span> {t('svc.delivery.title')}
+        </h4>
+        <div class="flex flex-wrap gap-1.5">
+          {t('svc.delivery.items').split('·').map((item: string) => (
+            <span class="tag">{item.trim()}</span>
+          ))}
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
